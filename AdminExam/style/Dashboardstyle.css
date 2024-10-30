@@ -1,0 +1,370 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,500;1,600;1,700;1,800&family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400px;
+}
+
+.heading {
+    width: 100%;
+    height: 75px;
+    box-shadow: 4px 4px 10px #c3cee9;
+    background-color: #27375f;
+    display: grid;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    position: fixed;
+}
+
+.heading h1 {
+    font-size: 40px;
+    color: rgb(6, 6, 156);
+}
+
+.maincontent {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    background-color: #ffffff;
+   
+    display: block;
+}
+
+/* navigationbar */
+.verticalnavibar {
+    width: 15%;
+    height: 1000px;
+    background-color: #c3cee9;
+    position: fixed;
+    top: 100px;
+    margin-top: 10px;
+}
+
+
+.navbar-nav {
+    width: 100%;
+    margin: auto;
+    display: block;
+
+}
+
+.nav-item {
+
+    padding: 10px;
+
+}
+
+.nav-item a {
+    font-size: 20px;
+    color: #2254c9;
+    border: 1px solid black;
+}
+
+
+#section2 {
+    width: 100%;
+    margin: auto;
+    height: auto;
+    background-color: #c0c0e0;
+
+}
+
+.addnavbar {
+    display: flex;
+    position: fixed;
+}
+
+.addnavbarul {
+    display: flex;
+    list-style: none;
+}
+
+
+.addstudent {
+    width: 70%;
+    height: auto;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    margin-top: 45px;
+    text-align: center;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(150, 149, 149, 0.9);
+
+}
+
+#addstudentnavigationcheck {
+    margin-top: 90px;
+}
+
+/*addstudent-header */
+
+
+.studentheader {
+    width: 100%;
+    height: 40px;
+
+    text-align: center;
+    font-size: 30px;
+}
+
+.studentheader a {
+    text-decoration: none;
+    border: 1.5px solid white;
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 18px;
+    margin-left: 60px;
+    margin-top: 30px;
+    background-color: #925fdb;
+    color: whitesmoke;
+    box-shadow: 4px 4px 10px rgba(150, 149, 149, 0.9);
+}
+
+.studentinput {
+    width: 60%;
+    margin: auto;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    padding: 15px;
+    text-align: center;
+
+}
+
+.studentinput p {
+    width: 100%;
+    text-align: left;
+
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.studentinput input,
+select,
+textarea {
+    width: 100%;
+    margin: auto;
+    height: 35px;
+    border: none;
+    background-color: #e6e6e6;
+    font-size: 15px;
+    margin-top: 2%;
+
+
+}
+
+.studentform {
+    width: 80%;
+    margin: auto;
+    background-color: #ffffff;
+    margin-top: 30px;
+
+}
+
+.attachfile {
+    width: 80%;
+    height: 300px;
+    margin: auto;
+    background-color: #ffffff;
+    border: 3px solid rgb(180, 180, 180);
+    border-radius: 5px;
+    margin-top: 30px;
+    box-shadow: 0px 10px 10px rgba(150, 149, 149, 0.9);
+    display: block;
+    margin-bottom: 30px;
+
+}
+
+.attachfile input {
+    margin-top: 30px;
+    width: 20%;
+    background-color: #7472729b;
+
+    padding: 5px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: 40%;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 4px 4px 10px rgba(224, 224, 224, 0.9);
+}
+
+.attachfile h3 {
+    font-size: 25px;
+    margin-top: 20px;
+
+}
+
+.attachfile .attachfile {
+    width: auto;
+}
+
+/* section-3 */
+
+.updateDetails {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    background-color: #f6f6f6f7;
+    margin-top: 50px;
+    border: 1.5px solid white;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(150, 149, 149, 0.9);
+    background-color: #2f0c65;
+    padding: 20px;
+}
+
+.search {
+    width: 90%;
+    height: 60px;
+    margin: auto;
+    background-color: rgb(171, 21, 31);
+    display: flex;
+    margin-top: 30px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.search form {
+    width: auto;
+    height: auto;
+    margin-top: 10px;
+    margin-left: 2%;
+
+
+}
+
+.search-form input {
+    width: auto;
+    height: auto;
+    background-color: #1f26a9;
+
+}
+
+
+.search-result {
+    width: 30%;
+    height: 60px;
+    background-color: #fff;
+    margin-left: auto;
+    display: flex;
+    float: left;
+    border: 1px solid white;
+    background-color: #840d33;
+
+    /* display: none; */
+    /* ******************************** */
+}
+
+.search-result p {
+    display: flex;
+    width: 40%;
+    height: auto;
+    margin-left: 60px;
+    align-items: center;
+    font-size: 22px;
+    background-color: #0fb83f;
+
+}
+
+.search-result a {
+    width: auto;
+    height: 50%;
+    margin: auto;
+    font-size: 98%;
+    text-decoration: none;
+    color: rgb(10, 6, 6);
+    border: 1px double rgb(255, 255, 255);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    background-color: #9a76d3;
+    font-weight: bolder;
+    background-color: #bd0f8f;
+}
+
+.search form input {
+    background-color: #0e2b93;
+    color: rgb(0, 0, 0);
+    width: 70%;
+    height: 50%;
+    border: 1px solid whitesmoke;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.search form button {
+    background-color: #d6d4d7;
+    color: rgb(0, 0, 0);
+    width: auto;
+    height: 45px;
+    border: 1px solid whitesmoke;
+    border-radius: 6px;
+    padding: 8px;
+
+
+}
+
+.updateContent {
+    width: 90%;
+    height: 300px;
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: 50px;
+    scroll-behavior: smooth;
+    overflow: hidden;
+    overflow-y: scroll;
+    border: 1px solid whitesmoke;
+    border-radius: 6px;
+}
+
+.updateContent li {
+    height: 70px;
+    width: 100%;
+    background-color: #d7d8d8;
+    margin-bottom: 10px;
+    display: flex;
+
+}
+
+.update-studentdataline {
+    display: flex;
+    width: 80%;
+    text-align: center;
+    align-items: center;
+
+
+}
+
+.update-studentdataline p {
+    width: 70%;
+    height: auto;
+
+    text-align: left;
+    margin-left: 80px;
+    margin-right: 60px;
+    font-size: 20px;
+
+}
+
+.update-studentdataline a {
+    width: 40%;
+    background-color: rgb(255, 255, 255);
+    font-size: 20px;
+    margin-left: 80px;
+    border: 1px solid whitesmoke;
+    border-radius: 6px;
+    text-decoration: none;
+    padding: 5px;
+
+}

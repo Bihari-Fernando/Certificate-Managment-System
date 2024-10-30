@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,500;1,600;1,700;1,800&family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400px;
+}
+.heading{
+    width: 100%;
+    height: 75px;
+  
+    background-color: #0f0377;
+    display: grid;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+       position: fixed;
+    top: 0;
+    left: 0;
+
+}
+.heading h1{
+    color: #ffffff;
+}
+.maincontent{
+    width: 100%;
+    height: 600px;
+    margin: auto;
+    display: flex;
+    margin-top: 75px;
+overflow: hidden;
+overflow-y: scroll;
+}
+
+
+.verticalnavi{
+    width: 15%;
+    height: 700px;
+    background-color: #022875;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 75px;
+
+}
+.verticalnavi li a{
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    
+}
+.verticalnavi li a:hover{
+    color: rgb(0, 47, 175);
+    font-size: 18px;
+}
+.mainbox {
+    width: 85%;
+    height: auto;
+    margin: auto;
+    margin-left: 15%;
+    text-align: center;
+    margin-top: 15px;
+    background-color: #ffffff;
+    display: block;
+    padding: 10px;
+}
+.subupdatebox{
+    width: 90%;
+    height: auto;
+   margin: auto;
+    background-color: #ffffff;
+}
+
+.studentformmain {
+    width: 95%;
+    height: auto;
+    margin: auto;
+    display: block;
+    margin: auto;
+    background-color: #ffffff;
+    margin-top: 30px;
+    margin-right: 45%;
+}
+
+.studentform {
+    width: 90%;
+    margin: auto;
+    background-color: #fbfbfb7d;
+   border: 2px solid blue;
+   border-radius: 15px;
+    padding: 30px;
+}
+
+.studentinput {
+    width: 90%;
+   margin: auto;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+    padding: 15px;
+
+
+}
+
+.studentinput p {
+    width: 100%;
+    text-align: left;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.studentinput input,
+select,
+textarea {
+    width: 80%;
+    margin: auto;
+    height: 35px;
+    border: 1px solid black;
+    background-color: #fdfdfd;
+    font-size: 16px;
+    right: auto;
+
+}
+.studentinput input,
+select,
+textarea :before {
+   
+    border: 1px solid rgb(47, 94, 205);
+   
+
+}
+
+.studentinput textarea {
+    height: auto;
+}
+
+.studentform input[type=submit]{
+    width: 100px;
+    margin-top: 20px;
+    font-size: 16px;
+    padding:10px;
+    background-color: #ffffff;
+    color: #0827db;
+    border: 1px solid blue;
+    border-radius: 10px;
+}

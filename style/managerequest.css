@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,500;1,600;1,700;1,800&family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400px;
+}
+.heading{
+    width: 100%;
+    height: 75px;
+    box-shadow: 4px 4px 10px #c3cee9;
+    background-color: #0f0377;
+    display: grid;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+       position: fixed;
+    top: 0;
+    left: 0;
+
+}
+.heading h1{
+    color: #ffffff;
+}
+.maincontent{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    margin-top: 75px;
+
+}
+
+
+.verticalnavi{
+    width: 15%;
+    height: 700px;
+    background-color: #0f0377;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 75px;
+
+}
+.verticalnavi li a{
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+.verticalnavi li a:hover{
+    color: rgb(0, 47, 175);
+    font-size: 18px;
+}
+
+.mainbox{
+    width: 85%;
+    height: auto;
+    margin: auto;
+    background-color: #ffffff;
+    text-align: center;
+    margin-left: 15%;
+}
+/* outbox */
+.varify {
+    width: 90%;
+    height: 550px;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    margin-top: 50px;
+    border: 1px solid whitesmoke;
+    border-radius: 6px;
+
+   
+}
+
+/* secondouterbox */
+.veifycontent {
+    width: 100%;
+    height:500px;
+    background-color: #b2c5e6;
+    margin: auto;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 40px;
+    border: 1px solid blue;
+}
+
+.verifycontentline {
+    width: 90%;
+    height: 15%;
+    margin: auto;
+    background-color: #ffffff;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid white;
+    border-radius: 10px;
+
+}
+
+.contetbox {
+    width: auto;
+    height: auto;
+
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.contetbox p {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.contetbox a {
+    width: 90px;
+    height: auto;
+    background-color: #0b1ff4;
+    margin-left: 90px;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+        padding: 5px;
+    font-size: 18px;
+    text-decoration: none;
+
+}
+.contetbox a:hover {
+   
+    background-color: #ffffff;
+     border: 1px solid blue;
+     color: #082fca;
+    text-decoration: none;
+
+}
+

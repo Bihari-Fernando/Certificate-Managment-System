@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,500;1,600;1,700;1,800&family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400px;
+}
+.heading{
+    width: 100%;
+    height: 75px;
+      background-color: #0f0377;
+    display: grid;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+}
+.heading h1{
+    color: #ffffff;
+}
+.maincontent{
+    width: 100%;
+    height: 640px;
+    margin: auto;
+    display: flex;
+    margin-top: 75px;
+overflow: hidden;
+overflow-y: scroll;
+}
+
+
+.verticalnavi{
+    width: 15%;
+    height: 700px;
+    background-color: #0f0377;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 75px;
+    
+}
+.verticalnavi li a{
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+.verticalnavi li a:hover{
+    color: rgb(0, 47, 175);
+    font-size: 18px;
+}
+.mainbox {
+    width: 85%;
+    height: 1000px;
+    margin: auto;
+    margin-left: 15%;
+    text-align: center;
+    padding:48px;
+    background-color: #ffffff;
+    
+}
+
+.mainbox h2 {
+    margin-top: 110px;
+    font-size: 40px;
+    text-transform: capitalize;
+}
+
+
+
+.addstudent {
+    width: 70%;
+    height: auto;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    margin-top: 45px;
+    text-align: center;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(150, 149, 149, 0.9);
+
+}
+
+
+
+/* addstudent-header */
+
+
+/* .studentheader {
+    width: 100%;
+    height: 40px;
+
+    text-align: center;
+    font-size: 30px;
+}
+
+.studentheader a {
+    text-decoration: none;
+    border: 1.5px solid white;
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 18px;
+    margin-left: 60px;
+    margin-top: 30px;
+    background-color: #925fdb;
+    color: whitesmoke;
+    box-shadow: 4px 4px 10px rgba(150, 149, 149, 0.9);
+} */
+.studentformmain {
+    width: 95%;
+    height: auto;
+    display: flex;
+    margin: auto;
+    background-color: #ffffff;
+    margin-top: 30px;
+    margin-right: 45%;
+}
+
+.studentform {
+    width: 55%;
+    margin: auto;
+    background-color: #ffffff7d;
+    margin-right: 45%;
+    padding: 30px;
+}
+
+.studentinput {
+    width: 90%;
+    margin: auto;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+    padding: 15px;
+
+
+}
+
+.studentinput p {
+    width: 100%;
+    text-align: left;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.studentinput input,
+select,
+textarea {
+    width: 100%;
+    margin: auto;
+    height: 35px;
+    border: 1px solid black;
+    background-color: #fdfdfd;
+    font-size: 16px;
+    text-align: center;
+
+}
+
+.studentinput textarea {
+    height: auto;
+}
+
+.studentform input[type=submit]{
+    width: 100px;
+    margin-top: 20px;
+    font-size: 16px;
+    padding:10px;
+    background-color: #ffffff;
+    color: #0827db;
+    border: 1px solid blue;
+    border-radius: 10px;
+}
+.studentform input[type=submit]:hover{
+    background-color: blue;
+    color: white;
+    border: none;
+}
+
+
+
+.attachfile {
+    width: 80%;
+    height: 300px;
+    margin: auto;
+    background-color: #ffffff;
+    border: 3px solid rgb(180, 180, 180);
+    border-radius: 5px;
+    margin-top: 30px;
+    box-shadow: 0px 10px 10px rgba(150, 149, 149, 0.9);
+    display: block;
+    margin-bottom: 30px;
+
+}
+
+.studentxlfile {
+    width: 38%;
+    margin-right: 2%;
+    height: 400px;
+    background-color: #ffffff;
+    position: fixed;
+    right: 0;
+}
+.studentxlfile h3{
+    margin-top: 50px;
+    font-size: 23px;
+}
+.mb{
+    width: 60%;
+    margin: auto;
+    font-size: 20px;
+    margin-top: 50PX;
+}
+.mb input{
+    font-size: 16px;
+}
+.mb input[type=submit]{
+    width: 90px;
+    margin-top: 20px;
+    font-size: 16px;
+    padding:10px;
+    background-color: #2709e7;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+}
+.mb input[type=submit]:hover{
+   border: 1px solid blue;
+   color: blue;
+   background-color: #fff;
+}
