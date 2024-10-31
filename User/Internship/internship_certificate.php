@@ -1,217 +1,74 @@
 <?php
-session_start();
+
 include "../connect.php";
+ob_start();
+session_start();
+$regNo=$_SESSION["username"];
 
-// Handle the form submission to insert a new student record
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $regNo = $_POST['regNo'];
-    $companyName = $_POST['companyName'];
+if (isset($_POST['request'])) {
+    
     $fullName = $_POST['fullName'];
+    $company = $_POST['companyName'];
     $duration = $_POST['duration'];
-    
+    $appnumber = mt_rand(100000000, 999999999);
 
-    
-    $insertQuery = "INSERT INTO internship (regNo,companyName, fullName, duration) 
-                    VALUES ('$regNo','$companyName', '$fullName', '$duration')";
-
-    if (mysqli_query($con, $insertQuery)) {
-        echo "<script>alert('Your sent successfully!');</script>";
-        
-    } else {
-        echo "Error: " . mysqli_error($con);
-    }
+    $query = "UPDATE student SET fullName='$fullName', companyName='$company', internshipDuration='$duration', certificateID='$appnumber' WHERE regNo='$regNo'";
+    mysqli_query($con, $query);
+    echo "<script> alert('Request submitted successfully!')</script>";
+    header("Location: UserDashboard.php");
 }
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UCIS | Certificate Request</title>
-    <link rel="stylesheet" href="" />
-  </head>
-  <style>
-    /* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+    <title>UCIS | Internship Certificate Request</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body id="Dashboard">
 
-/* Body Styling */
-body#Dashboard {
-    background-color: #f1f5f9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    margin: 0;
-}
-
-/* Container Styling */
-.container {
-    max-width: 600px;
-    width: 90%;
-    margin: auto;
-    padding: 20px;
-}
-
-/* Card Styling */
-.card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-}
-
-/* Form Styling */
-.topic {
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #1a237e;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-row {
-    margin-bottom: 15px;
-}
-
-.form-row label {
-    display: block;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.form-row input[type="text"],
-.form-row input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    outline: none;
-}
-
-.form-row input[type="text"]:focus,
-.form-row input[type="number"]:focus {
-    border-color: #1a237e;
-}
-
-/* Button Styling */
-.btn-row {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.btn {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.outline-btn {
-    background-color: #fff;
-    border: 2px solid #1a237e;
-    color: #1a237e;
-}
-
-.outline-btn:hover {
-    background-color: #1a237e;
-    color: #fff;
-}
-
-.fill-btn {
-    background-color: #1a237e;
-    border: none;
-    color: #fff;
-}
-
-.fill-btn:hover {
-    background-color: #0d1b6b;
-}
-
-/* Footer Styling */
-.footer {
-    text-align: center;
-    padding: 15px;
-    margin-top: 30px;
-}
-
-.copyright {
-    color: #666;
-    font-size: 0.875rem;
-}
-.btn-row-inquiry{
-  margin-top: 30px;
-}
-
-  </style>
-  <body id="Dashboard">
-
-  
     <div class="container">
-      <div class="card complaint-card">
-        <h3 class="topic">Fill the Form</h3>
-        <form class="form" method="post" action="" enctype="multipart/form-data">
-          <div>
-            <div class="form-row">
-            <label for="regNo">Registration Number:</label><br>
-            <input type="text" id="regNo" name="regNo" required><br><br>
-            </div>
-            
-            <div class="form-row">
-            <label for="fullName">Full Name:</label><br>
-            <input type="text" id="fullName" name="fullName" required><br><br>
-            </div>
-            
-            
-            <div class="form-row">
-            <label for="companyName">Company Name:</label><br>
-            <input type="text" id="companyName" name="companyName" required><br><br>
-            </div>
-            <div class="form-row">
-            <label for="duration">Duration:</label><br>
-            <input type="text"  id="duration" name="duration" required><br><br>
-            </div>
-            
-           
-            
-          <div class="btn-row">
-            <a href="../UserDashboard.php" class="btn outline-btn">Back</a>
-            <input
-              class="btn fill-btn"
-              type="submit"
-              name='request'
-              value="Request Certificate"/>
-          </div>
+        <div class="card complaint-card">
+            <h3 class="topic">Request Internship Certificate</h3>
+            <form class="form" method="post" action="">
+                <div>
+                    <div class="form-row">
+                        <label for="fullName">Full Name: </label>
+                        <input type="text" class="input" id="fullName" name="fullName" required />
+                    </div>
 
-          
-        </form>
-      </div>
+                    <div class="form-row">
+                        <label for="reg-no">Registration Number: </label>
+                        <input type="text" class="input" id="reg-no" name="reg-no" value="<?php echo $regNo; ?>" readonly />
+                    </div>
+
+                    <div class="form-row">
+                        <label for="companyName">Company Name: </label>
+                        <input type="text" class="input" id="companyName" name="companyName" required />
+                    </div>
+
+                    <div class="form-row">
+                        <label for="duration">Internship Duration: </label>
+                        <input type="text" class="input" id="duration" name="duration" required />
+                    </div>
+
+                    <div class="btn-row">
+                        <a href="UserDashboard.php" class="btn outline-btn">Back</a>
+                        <input class="btn fill-btn" type="submit" name='request' value="Request Certificate" />
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="btn-row-inquiry">
-            <a class="btn outline-btn" href="Complaints.php">File any inquiries</a>
+
     <div class="footer">
-      <p class="copyright">
-        COPYRIGHT &copy; 2023 FACULTY OF SCIENCE UNIVERSITY OF JAFFNA. ALL
-        RIGHTS RESERVED.
-      </p>
+        <p class="copyright">
+            COPYRIGHT &copy; 2023 FACULTY OF SCIENCE UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.
+        </p>
     </div>
-  </body>
+
+</body>
 </html>

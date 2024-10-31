@@ -1,5 +1,4 @@
 <?php
-
 ob_start();
 session_start();
 include "../connect.php";
@@ -11,6 +10,9 @@ $regNo = $_SESSION['username'];
 $query = "SELECT * FROM internship WHERE regNo = '$regNo'";
 $res = mysqli_query($con, $query);
 $obj = mysqli_fetch_assoc($res);
+
+// Set the current date
+$currentDate = date("F j, Y");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,214 +20,179 @@ $obj = mysqli_fetch_assoc($res);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DCS | Download Department Approved Internship Completion Certificate</title>
+  <title>DCS | Download Internship Completion Certificate</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
     integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        /* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4; /* Light grey background for the whole page */
-    color: #333; /* Dark text color for readability */
-}
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f7f5f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
 
-.nav-bar {
-    background-color: #4CAF50; /* Green background for the navigation */
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .certificate-container {
+      width: 790px;
+      padding: 40px;
+      border: 15px solid #8a4b08;
+      background-color: #fff;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
 
-.nav-links .logo {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-}
+    .certificate-border {
+      border: 3px solid #8a4b08;
+      padding: 20px;
+      position: relative;
+    }
 
-.nav-links .btn {
-    background-color: white; /* White button for logout */
-    color: #4CAF50; /* Green text color for button */
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    .header {
+      font-size: 36px;
+      font-weight: bold;
+      color: #4a2f00;
+      margin-bottom: 10px;
+    }
 
-.nav-links .btn:hover {
-    background-color: #ddd; /* Light grey on hover */
-}
+    .sub-header {
+      font-size: 20px;
+      color: #8a4b08;
+      margin-bottom: 20px;
+    }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-}
+    .certificate-title {
+      font-size: 28px;
+      color: #333;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
 
-.card {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    width: 700px; /* Set a fixed width for the certificate card */
-    text-align: left; /* Align text to the left for a formal look */
-}
+    .content {
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 20px;
+    }
 
-.certificate-code {
-    text-align: center;
-    margin-bottom: 20px;
-}
+    .highlight {
+      font-weight: bold;
+      color: #4a2f00;
+    }
 
-.certificate-title {
-    text-align: center;
-    margin: 20px 0;
-}
+    /* University Logo */
+    .logo-image {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 80px;
+      height: auto;
+    }
 
-.certificate-title .title {
-    font-size: 24px;
-    color: #4CAF50; /* Green color for title */
-}
+    .signatures {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
 
-.certificate-title .sub-title {
-    font-size: 18px;
-    color: #666; /* Darker grey for subtitle */
-}
+    .signature {
+      text-align: center;
+    }
 
-.certificate-details {
-    margin: 20px 0;
-}
+    .signature-line {
+      margin-top: 30px;
+      border-top: 1px solid #8a4b08;
+      width: 200px;
+      margin: auto;
+    }
 
-.detail-row-grid2 {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-}
+    .date {
+      text-align: right;
+      margin-top: 10px;
+      font-size: 16px;
+      color: #4a2f00;
+    }
 
-.detail-row-grid2 h5 {
-    margin: 0; /* Remove default margin */
-    font-weight: normal; /* Make headings normal weight */
-}
+    .btn-container {
+      margin-top: 20px;
+    }
 
-.detail-row-grid2 p {
-    margin: 0;
-    color: #555; /* Slightly lighter grey for detail text */
-}
+    .btn {
+      background-color: #8a4b08;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
+    }
 
-footer {
-    text-align: center;
-    padding: 20px 0;
-    background: #4CAF50; /* Same green background for footer */
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-.footer .copyright {
-    margin: 0;
-}
-
-/* Button Styles */
-.btn.fill-btn {
-    background-color: #4CAF50; /* Green button */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.btn.fill-btn:hover {
-    background-color: #45a049; /* Darker green on hover */
-}
-
-    </style>
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      margin-top: 20px;
+      padding: 10px;
+    }
+  </style>
 </head>
 
-<body id="certificate-details">
-  <nav class="nav-bar">
-    <div class="nav-links">
-      <h1 class="logo">Logo of UOJ</h1>
-      <a class="btn fill-btn" href="logout.php">Logout</a>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="card complaint-card" id='in'>
-        <div class="certificate-code">
-          <p style="font-size:12px"><span style="color:red;">*</span> Computer generated copy</p>
-          <p class="code"><?php echo $obj['certificateID'] ?></p>
+<body>
+  <div class="certificate-container" id="certificate-content">
+    <div class="certificate-border">
+      <!-- University Logo Inside Certificate Border -->
+      <img src="Logouni.png" alt="University of Jaffna Logo" class="logo-image">
+
+      <div class="header">University of Jaffna</div>
+      <div class="sub-header">Faculty of Science, Department of Computer Science</div>
+      <div class="certificate-title">Internship Completion Certificate</div>
+      <div class="content">
+        This is to certify that <span class="highlight"><?php echo $obj['fullName']; ?></span>, 
+        with the registration number <span class="highlight"><?php echo $obj['regNo']; ?></span>, 
+        has successfully completed the internship program at 
+        <span class="highlight"><?php echo $obj['companyName']; ?></span> for a duration of 
+        <span class="highlight"><?php echo $obj['duration']; ?></span>. This internship was conducted under the approval of the Department of Computer Science, University of Jaffna.
+      </div>
+
+      <div class="signatures">
+        <div class="signature">
+          <div class="signature-line"></div>
+          <p>Head of Department</p>
         </div>
-        <div class="certificate-title">
-          <h3 class="title">University of Jaffna, Sri Lanka</h3>
-          <h4 class="sub-title">Certificate Department Approved Internship Completion</h4>
+        <div>
+          <p>Date: <?php echo $currentDate; ?></p>
         </div>
-        <div class="certificate-details">
-          <div class="detail-row-grid2">
-            <h5>Full Name of the Student: </h5>
-            <p><?php echo $obj['fullName'] ?></p>
-          </div>
-          <div class="detail-row-grid2">
-            <h5>Registration Number: </h5>
-            <p><?php echo $obj['regNo'] ?></p>
-          </div>
-          <div class="detail-row-grid2">
-            <h5>Company Name: </h5>
-            <p><?php echo $obj['companyName'] ?></p>
-          </div>
-          <div class="detail-row-grid2">
-            <h5>Duration: </h5>
-            <p><?php echo $obj['duration'] ?></p>
-          </div>
-          
-          <div class="detail-row-grid2">
-            <h5>Status: </h5>
-            <p style="color: green !important"><?php echo $obj['status'] ?></p>
-          </div>
-         
-        </div>
-        <center><button id="download-button" class="btn fill-btn">Download as PDF</button></center>
+      </div>
     </div>
   </div>
-  <div class="footer">
-    <p class="copyright">
-      COPYRIGHT &copy; 2023 FACULTY OF SCIENCE UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.
-    </p>
+
+  <div class="btn-container">
+    <button id="download-button" class="btn">Download as PDF</button>
   </div>
   
+  <div class="footer">
+    COPYRIGHT &copy; 2023 FACULTY OF SCIENCE, UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.
+  </div>
+
+  <script>
+    const button = document.getElementById('download-button');
+
+    function generatePDFWithDelay() {
+      button.disabled = true;
+      setTimeout(function () {
+        const element = document.getElementById('certificate-content');
+        html2pdf().from(element).save();
+        button.disabled = false;
+      }, 5000);
+    }
+
+    button.addEventListener('click', generatePDFWithDelay);
+  </script>
 </body>
-
 </html>
-
-<script>
-  const button = document.getElementById('download-button');
-
-  function generatePDFWithDelay() {
-    // Disable the button to prevent multiple clicks during the delay
-    button.disabled = true;
-
-    // Set a 5-second (5000 milliseconds) delay before generating the PDF
-    setTimeout(function () {
-      // Choose the element that your content will be rendered to.
-      const element = document.getElementById('in');
-      // Choose the element and save the PDF for your user.
-      html2pdf().from(element).save();
-
-      // Re-enable the button after the PDF is generated
-      button.disabled = false;
-    }, 5000); // 5000 milliseconds = 5 seconds
-  }
-
-  button.addEventListener('click', generatePDFWithDelay);
-</script>
