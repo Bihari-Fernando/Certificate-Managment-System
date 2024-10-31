@@ -4,19 +4,28 @@ ob_start();
 session_start();
 include "../connect.php";
 
+if (!isset($_SESSION["username"])) {
+  die("User is not logged in. Please log in to submit a complaint.");
+}
 
-if (isset($_POST["complaints"])) 
+$regNo = $_SESSION["username"];
+
+if (isset($_POST["complaints"]) && isset($_POST["description"])) 
 {
    
     $Description = $_POST["description"];
     
     
 
-    $query = "INSERT INTO topstudents(problems) values('$Description')"; 
-    $result = mysqli_query($con, $query);
+    $query = "INSERT INTO topstudents(regNo,problems) values('$regNo','$Description')"; 
+    if (mysqli_query($con, $query)) {
+      echo "<script>alert('Your complaint has been submitted successfully.');</script>";
+    } else {
+        echo "Error: " . mysqli_error($con);
+    }
 
 
-   
+    mysqli_close($con);
    
 
 }

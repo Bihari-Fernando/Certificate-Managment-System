@@ -1,52 +1,35 @@
 <?php
-ob_start();
 session_start();
-include "../connect.php";
+include "connect.php";
 
-// Fetching the student's information from the database
-$query = "SELECT * FROM topstudents";
-$res = mysqli_query($conn, $query);
-$obj = mysqli_fetch_assoc($res);
+// Fetch the problem information based on the id parameter
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $query = "SELECT * FROM topstudents WHERE id = ?";
+    $stmt = mysqli_prepare($con, $query);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $obj = mysqli_fetch_assoc($result);
+}
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// Handle form submission for the response
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['response']) && isset($_GET['id'])) {
     $response = $_POST['response'];
-   
-    // Assuming regNo is present in the $obj fetched above
-    $regNo = $obj['regNo'];
+    $id = $_GET['id'];
 
-    // Using UPDATE instead of INSERT with WHERE clause
-    $updateQuery = "UPDATE topstudents SET responses = ? WHERE regNo = ?";
-    $stmt = mysqli_prepare($conn, $updateQuery);
+    // Update the response in the database for the given id
+    $updateQuery = "UPDATE topstudents SET responses = ?, problem_status = 'V' WHERE id = ?";
+    $stmt = mysqli_prepare($con, $updateQuery);
+    mysqli_stmt_bind_param($stmt, "si", $response, $id);
+    mysqli_stmt_execute($stmt);
 
-    if ($stmt) {
-        mysqli_stmt_bind_param($stmt, 'ss', $response, $regNo);
-        mysqli_stmt_execute($stmt);
-
-        if (mysqli_stmt_affected_rows($stmt) > 0) {
-            // Update the problem_status column to "V"
-            $statusUpdateQuery = "UPDATE topstudents SET problem_status = 'V' WHERE regNo = ?";
-            $statusStmt = mysqli_prepare($conn, $statusUpdateQuery);
-            
-            if ($statusStmt) {
-                mysqli_stmt_bind_param($statusStmt, 's', $regNo);
-                mysqli_stmt_execute($statusStmt);
-                
-                if (mysqli_stmt_affected_rows($statusStmt) > 0) {
-                    echo "<script>alert('Your response was sent successfully and the problem status was updated!');</script>";
-                } else {
-                    echo "<script>alert('Your response was sent, but there was an error updating the problem status.');</script>";
-                }
-                mysqli_stmt_close($statusStmt);
-            } else {
-                echo "Error updating problem status: " . mysqli_error($conn);
-            }
-        } else {
-            echo "Error: No record was updated.";
-        }
-        mysqli_stmt_close($stmt);
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        echo "<script>alert('Your response was sent successfully and the problem status was updated!');</script>";
     } else {
-        echo "Error: " . mysqli_error($conn);
+        echo "<script>alert('Error: No record was updated.');</script>";
     }
+    mysqli_stmt_close($stmt);
 }
 ?>
 
@@ -137,7 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <p><?php echo isset($obj['problems']) ? htmlspecialchars($obj['problems']) : "No description available"; ?></p>
     </div>
     <div>
-        <form action="" method="POST">
+    <form action="response.php?id=<?php echo $id; ?>" method="POST">
+        
             <label><h2>Response</h2></label><br>
             <textarea name="response" class="large-textarea"></textarea><br>
             <button type="submit">Send Response</button>

@@ -7,7 +7,7 @@ include "../connect.php";
 $regNo = $_SESSION['username'];
 
 // Fetching the student's information from the database
-$query = "SELECT responses, problems FROM internship WHERE regNo = '$regNo'";
+$query = "SELECT responses, problems FROM topstudents WHERE regNo = '$regNo'";
 $res = mysqli_query($con, $query);
 $obj = mysqli_fetch_assoc($res);
 ?>

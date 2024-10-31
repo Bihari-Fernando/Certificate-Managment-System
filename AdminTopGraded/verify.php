@@ -3,10 +3,9 @@ session_start();
 include "connect.php";
 
 if (isset($_POST['verify'])) {
-    $regNo = $_POST['regNo'];
-
+    $id = $_POST['id'];
     // Update query to set status to 'V' (Verified)
-    $updateQuery = "UPDATE topstudents SET status = 'V' WHERE regNo = '$regNo'";
+    $updateQuery = "UPDATE topstudents SET status = 'V' WHERE id = '$id'";
     if (mysqli_query($con, $updateQuery)) {
         echo "<script>alert('Student verified successfully!');</script>";
     } else {
@@ -15,8 +14,16 @@ if (isset($_POST['verify'])) {
 }
 
 // Fetch all student data from the topstudents table
-$query = "SELECT * FROM topstudents";
-$result = mysqli_query($con, $query);
+$query = "SELECT id, regNo, fullName, gpa, indexNo, academicYear, status 
+          FROM topstudents
+          WHERE regNo IS NOT NULL AND regNo != '' 
+          AND fullName IS NOT NULL AND fullName != ''
+          AND indexNo IS NOT NULL AND indexNo != '' 
+          AND academicYear IS NOT NULL AND academicYear != '' 
+          AND gpa IS NOT NULL AND gpa != ''
+          AND status != 'V'";
+
+
 ?>
 
 <!DOCTYPE html>
@@ -141,7 +148,7 @@ $result = mysqli_query($con, $query);
                         </td>
                         <td>
                             <form method="POST" action="">
-                                <input type="hidden" name="regNo" value="<?php echo $row['regNo']; ?>">
+                                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                 <button type="submit" name="verify" class="btn" 
                                     <?php echo ($row['status'] == 'V') ? 'disabled' : ''; ?>>
                                     Verify
