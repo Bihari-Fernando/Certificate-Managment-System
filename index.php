@@ -34,8 +34,8 @@
     /* Navigation Bar Styling */
     .navbar {
       width: 100%;
-      height: 17%;
-      background-color: #233c98;
+      height: 100px;
+      background-color: rgba(35, 60, 152, 0.9);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -43,10 +43,12 @@
       position: fixed;
       top: 0;
       z-index: 10;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .navbar img {
-      height: 120px;
+      height: 90px;
+      width: 100px;
       margin-left: 3px;
     }
 
@@ -54,8 +56,9 @@
       color: #233c98;
       background-color: #f3f8ff;
       border: none;
-      font-size: 22px;
-      padding: 30px 20px;
+      font-size: 18px;
+      padding: 10px 20px;
+      font-weight: bold;
       border-radius: 5px;
       text-decoration: none;
       cursor: pointer;
@@ -63,41 +66,42 @@
     }
 
     .navbar .admin-btn:hover {
-      background-color: #f3f8ff;
+      background-color: #dce3f9;
     }
 
     /* Centered Login Card Styling */
     .login-card {
-      background-color: #f3f8ff;
-      padding: 15px;
-      width: 700px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      width: 500px;
+      border-radius: 12px;
+      box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 80px; /* Pushes the card below the navbar */
-      margin-bottom: 30px;
+      margin-top: 90px;
+      margin-bottom: 10px;
       backdrop-filter: blur(5px);
     }
 
     .login-card h2 {
-      font-size: 40px;
+      font-size: 28px;
+      color: #233c98;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .login-card h5 {
+      font-size: 18px;
       color: #333;
-      margin-bottom: 20px;
-      font-weight: bold;
-      /* font-weight: bold; */
+      margin-bottom: 25px;
     }
-    .login-card h5{
-      font-size: 20px;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
+
     .icon-bg {
-      font-size: 60px;
+      font-size: 50px;
       color: #4CAF50;
-      margin-bottom: 5px;
+      margin-bottom: 15px;
     }
 
     .form .text-input {
@@ -119,7 +123,7 @@
       width: 100%;
       padding: 15px 15px 15px 40px;
       border: 1px solid #ddd;
-      border-radius: 5px;
+      border-radius: 8px;
       font-size: 16px;
       color: #333;
       transition: border-color 0.3s;
@@ -133,12 +137,12 @@
 
     .form input[type="submit"],
     .form .btn {
-      background-color: #4CAF50;
+      background-color: #233c98;
       color: #fff;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       padding: 15px;
-      font-size: 15px;
+      font-size: 16px;
       cursor: pointer;
       width: 100%;
       transition: background-color 0.3s;
@@ -147,20 +151,18 @@
 
     .form input[type="submit"]:hover,
     .form .btn:hover {
-      background-color: #45a049;
+      background-color: #1d306f;
     }
 
     .forgot-pw-link,
     .form a {
-      color: #888;
-      font-size: 17px;
+      color: #666;
+      font-size: 15px;
       text-decoration: none;
       display: inline-block;
       margin-top: 10px;
     }
-    .btn{
-      font-size: 17px;
-    }
+
     .forgot-pw-link:hover,
     .form a:hover {
       color: #4CAF50;
