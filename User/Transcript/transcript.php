@@ -5,7 +5,7 @@ ob_start();
     session_start();
     $regNo=$_SESSION["username"];
 
-//comment
+
 if (isset($_POST['request'])) {
     
     $fullName = $_POST['fullName'];
