@@ -227,7 +227,7 @@ $obj = mysqli_fetch_assoc($res);
         filename: 'certificate.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a5', orientation: 'landscape' }
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       });
     });
   </script>
