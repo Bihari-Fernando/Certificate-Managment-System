@@ -9,10 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fullName = $_POST['fullName'];
     $gpa = $_POST['gpa'];
     $academicYear = $_POST['academicYear'];
-
+    $effectiveDate = date('Y-m-d');
     
-    $insertQuery = "INSERT INTO topstudents (regNo,indexNo, fullName, gpa, academicYear) 
-                    VALUES ('$regNo','$indexNo', '$fullName', '$gpa', '$academicYear')";
+    $insertQuery = "INSERT INTO topstudents (regNo,indexNo, fullName, gpa, academicYear,effectiveDate) 
+                    VALUES ('$regNo','$indexNo', '$fullName', '$gpa', '$academicYear','$effectiveDate')";
 
     if (mysqli_query($con, $insertQuery)) {
         echo "<script>alert('Your sent successfully!');</script>";

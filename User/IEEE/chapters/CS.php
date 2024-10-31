@@ -9,11 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $membershipNo = $_POST['membershipNo'];
     $sessionName =  $_POST['sessionName'];
     $sessionDate =  $_POST['sessionDate'];
-
+    $effectiveDate = date('Y-m-d');
   
     $query = "INSERT INTO cs 
-              (fullName, regNo, membership, membershipNo, sessionName, sessionDate) 
-              VALUES ('$fullName', '$regNo', '$membership', '$membershipNo', '$sessionName', '$sessionDate')";
+              (fullName, regNo, membership, membershipNo, sessionName, sessionDate, effectiveDate) 
+              VALUES ('$fullName', '$regNo', '$membership', '$membershipNo', '$sessionName', '$sessionDate',' $effectiveDate')";
     
     if (mysqli_query($con, $query)) {
         echo "<script>alert('Your request sent successfully!');</script>";
