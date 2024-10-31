@@ -4,10 +4,10 @@ include "connect.php";
 
 // Handle the verification request
 if (isset($_POST['verify'])) {
-    $regNo = $_POST['regNo'];
+    $id = $_POST['id'];
 
     // Update query to set status to 'V' (Verified)
-    $updateQuery = "UPDATE internship SET status = 'V' WHERE regNo = '$regNo'";
+    $updateQuery = "UPDATE internship SET status = 'V' WHERE id = '$id'";
     if (mysqli_query($con, $updateQuery)) {
         echo "<script>alert('Student verified successfully!');</script>";
     } else {
@@ -15,8 +15,14 @@ if (isset($_POST['verify'])) {
     }
 }
 
-// Fetch all student data from the internship table
-$query = "SELECT * FROM internship";
+// Fetch records only where all specified fields are set and not empty
+$query = "SELECT id, regNo, fullName, duration, companyName, status 
+          FROM internship 
+          WHERE regNo IS NOT NULL AND regNo != '' 
+          AND fullName IS NOT NULL AND fullName != '' 
+          AND duration IS NOT NULL AND duration != '' 
+          AND companyName IS NOT NULL AND companyName != ''
+          AND status != 'V'";
 $result = mysqli_query($con, $query);
 ?>
 
@@ -36,7 +42,6 @@ $result = mysqli_query($con, $query);
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css=<?php echo time(); ?>">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <link rel="stylesheet" href="style.css">
     <style>
         table {
             width: 100%;
@@ -72,10 +77,9 @@ $result = mysqli_query($con, $query);
             border-top: 2px solid black;
             background-color: #0f0377;
         }
-        .head{
+        .head {
             width: 100%;
             height: 75px;
-   
             background-color: #0f0377;
             display: grid;
             margin: auto;
@@ -84,12 +88,11 @@ $result = mysqli_query($con, $query);
             position: fixed;
             top: 0;
             left: 0;
-
         }
-        .head h1{
+        .head h1 {
             color: #ffffff;
         }
-        .footer p{
+        .footer p {
             color: #ffffff;
         }
     </style>
@@ -120,8 +123,6 @@ $result = mysqli_query($con, $query);
                             <th>Full Name</th>
                             <th>Company Name</th>
                             <th>Duration</th>
-                            <th>Certificate ID</th>
-                            <th>Effective Date</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -133,16 +134,10 @@ $result = mysqli_query($con, $query);
                                 <td><?php echo $row['fullName']; ?></td>
                                 <td><?php echo $row['companyName']; ?></td>
                                 <td><?php echo $row['duration']; ?></td>
-                                <td><?php echo $row['certificateID']; ?></td>
-                                <td><?php echo $row['effectiveDate']; ?></td>
-                                <td>
-                                    <?php
-                                    echo ($row['status'] == 'V') ? "Verified" : "Not Verified";
-                                    ?>
-                                </td>
+                                <td><?php echo ($row['status'] == 'V') ? 'Verified' : 'Not Verified'; ?></td>
                                 <td>
                                     <form method="POST" action="">
-                                        <input type="hidden" name="regNo" value="<?php echo $row['regNo']; ?>">
+                                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                         <button type="submit" name="verify" class="btn" 
                                             <?php echo ($row['status'] == 'V') ? 'disabled' : ''; ?>>
                                             Verify
@@ -156,7 +151,7 @@ $result = mysqli_query($con, $query);
             </div>
         </div>
     </section>                        
-    
+
     <footer class="footer">
         <p>COPYRIGHT &copy; 2023 FACULTY OF SCIENCE UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.</p>                   
     </footer>

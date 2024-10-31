@@ -697,7 +697,7 @@ a:focus {
                 </thead>
                 <tbody>
                 <?php foreach ($certificates as $certificate): ?>
-                    <?php if (!empty($certificate['effectiveDate']) && $certificate['effectiveDate'] !== '0000-00-00'): ?>
+                    <?php if (!empty($certificate['effectiveDate']) && $certificate['effectiveDate'] !== '0000-00-00' && $certificate['effectiveDate'] !== 'N/A'): ?>
                   <tr>
                     <td><?php echo htmlspecialchars($certificate['type']); ?></td>
                     <td><?php echo htmlspecialchars($certificate['effectiveDate']); ?></td>
