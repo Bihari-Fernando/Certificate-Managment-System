@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 ob_start();
 include("connect.php");
 session_start();
-$_SESSION['username'];
+
 $error_message = "";  // Initialize error message variable
 
 if ($conn->connect_error) {

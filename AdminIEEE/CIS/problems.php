@@ -1,8 +1,8 @@
-<?php
+<?php 
 session_start();
 include "../connect.php";
 
-// Fetch only unresolved problems from the problems table
+// Fetch only unresolved problems from the internship table
 $query = "SELECT * FROM cis WHERE responses IS NULL OR responses = ''";
 $result = mysqli_query($con, $query);
 ?>
@@ -13,8 +13,7 @@ $result = mysqli_query($con, $query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - View Problems</title>
-
-    <link rel="stylesheet" href="style/mainupdate.css?=<?php echo time(); ?> ">
+    <link rel="stylesheet" href="style/mainupdate.css?=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css?=<?php echo time(); ?>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js?=<?php echo time(); ?>"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js?=<?php echo time(); ?>"></script>
@@ -22,11 +21,9 @@ $result = mysqli_query($con, $query);
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <style>
-        /* Internal styles */
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
         .btn { background-color: rgb(0, 47, 175); color: white; border: none; padding: 10px 20px; cursor: pointer; }
-        .btn:disabled { background-color: #ccc; cursor: not-allowed; }
         .footer { text-align: center; padding: 15px 0; position: fixed; bottom: 0; width: 100%; background-color: #0f0377; color: #fff; border-top: 2px solid black; }
         .head { width: 100%; height: 75px; background-color: #0f0377; display: grid; margin: auto; text-align: center; align-items: center; position: fixed; top: 0; left: 0; }
         .head h1 { color: #ffffff; }
@@ -54,24 +51,19 @@ $result = mysqli_query($con, $query);
                         <thead>
                             <tr>
                                 <th>Registration Number</th>
-                                <th>Full Name</th>
-                                <th>Email</th>
                                 <th>View Details</th>
-                                
                             </tr>
                         </thead>
                         <tbody>
                             <?php while ($row = mysqli_fetch_assoc($result)): ?>
                                 <tr>
                                     <td><?php echo $row['regNo']; ?></td>
-                                    <td><?php echo $row['fullName']; ?></td>
-                                    <td></td>
                                     <td>
-                                        <a href="response.php?regNo=<?php echo $row['regNo']; ?>">
+                                        <!-- Pass 'id' as a parameter to response.php -->
+                                        <a href="response.php?id=<?php echo $row['id']; ?>">
                                             <button class="btn" type="button">View</button>
                                         </a>
                                     </td>
-                                    
                                 </tr>
                             <?php endwhile; ?>
                         </tbody>

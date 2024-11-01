@@ -55,7 +55,7 @@ $result = mysqli_query($con, $query);
                             <tr>
                                 <th>Registration Number</th>
                                 <th>Full Name</th>
-                                <th>Email</th>
+                                
                                 <th>View Details</th>
                                 
                             </tr>
@@ -67,7 +67,7 @@ $result = mysqli_query($con, $query);
                                     <td><?php echo $row['fullName']; ?></td>
                                     <td></td>
                                     <td>
-                                        <a href="response.php?regNo=<?php echo $row['regNo']; ?>">
+                                        <a href="response.php?id=<?php echo $row['id']; ?>">
                                             <button class="btn" type="button">View</button>
                                         </a>
                                     </td>
