@@ -58,7 +58,14 @@ $downloadLinks = [
     'Transcript Certificate' => 'Transcript/download_transcript.php',
     'Internship Certificate' => 'Internship/download_internship.php'
 ];
-
+$responseLinks = [
+    'Top Graded Student Certificate' => 'TopGraded/view_response.php',
+    'IEEE CIS Session Certificate' => 'IEEE/chapters/view_cis_response.php',
+    'IEEE CS Session Certificate' => 'IEEE/chapters/view_cs_response.php',
+    'IEEE WIE Session Certificate' => 'IEEE/chapters/view_wie_response.php',
+    'Transcript Certificate' => 'Transcript/view_response.php',
+    'Internship Certificate' => 'Internship/view_response.php'
+];
 
 $responseQuery = "SELECT * FROM internship WHERE regNo = '$regNo'";
 $responseResult = mysqli_query($con, $responseQuery);
@@ -68,11 +75,11 @@ while ($responseRow = mysqli_fetch_assoc($responseResult)) {
 }
 
 $details = [
-    'Top Graded Student Certificate' => "SELECT problems, problem_status FROM topstudents WHERE regNo = '$regNo'",
-    'Internship Certificate' => "SELECT problems, problem_status FROM internship WHERE regNo = '$regNo'",
-    //'IEEE CS Session Certificate' => "SELECT problems, problem_status FROM cs WHERE regNo = '$regNo'",
-    //'IEEE CIS Session Certificate' => "SELECT problems, problem_status FROM cis WHERE regNo = '$regNo'",
-    //'IEEE WIE Session Certificate' => "SELECT problems, problem_status FROM wie WHERE regNo = '$regNo'",
+    'Top Graded Student Certificate' => "SELECT problems, problem_status, id FROM topstudents WHERE regNo = '$regNo'",
+    'Internship Certificate' => "SELECT problems, problem_status, id FROM internship WHERE regNo = '$regNo'",
+    'IEEE CS Session Certificate' => "SELECT problems, problem_status,id FROM cs WHERE regNo = '$regNo'",
+    'IEEE CIS Session Certificate' => "SELECT problems, problem_status,id FROM cis WHERE regNo = '$regNo'",
+    'IEEE WIE Session Certificate' => "SELECT problems, problem_status, id FROM wie WHERE regNo = '$regNo'",
     //'Degree Transcript Certificate' => "SELECT problems, problem_status FROM cs WHERE regNo = '$regNo'",
 ];
 
@@ -87,7 +94,8 @@ foreach ($details as $type => $detail) {
         $problems[] = [
             'type' => $type,
             'problems' => $row['problems'] ?? 'N/A',
-            'problem_status' => $row['problem_status'] ?? 'N/A'
+            'problem_status' => $row['problem_status'] ?? 'N/A',
+            'id' => $row['id'] ?? null,
         ];
     }
 }
@@ -736,9 +744,12 @@ a:focus {
                 
                 <td>
                     <?php if ($problem['problem_status'] == 'V'): ?>
-                        <a href="Internship/view_response.php" class="btn fill-btn">
-                            View
-                        </a>
+                        
+                  
+                        <a href="<?php echo $responseLinks[$problem['type']] . '?regNo=' . urlencode($regNo) . '&id=' . urlencode($problem['id']); ?>" class="btn fill-btn">View</a>
+
+
+
                     <?php else: ?>
                         <span>In Progress</span>
                     <?php endif; ?>

@@ -1,23 +1,33 @@
 <?php
-
 ob_start();
 session_start();
 include "../../connect.php";
 
-
-if (isset($_POST["complaints"])) 
-{
-  $Description = $_POST["description"];
-    
-    
-
-  $query = "INSERT INTO cis(problems) values('$Description')"; 
-  $result = mysqli_query($con, $query);
-
-   
-   
-
+// Check if regNo is properly set in the session
+if (!isset($_SESSION["username"])) {
+    die("User is not logged in. Please log in to submit a complaint.");
 }
+
+$regNo = $_SESSION["username"];
+
+// Check if the form was submitted and the description is set
+if (isset($_POST["complaints"]) && isset($_POST["description"])) {
+    $Description = $_POST["description"]; // Get the complaint description from the form
+
+    // Prepare the INSERT query
+    $query = "INSERT INTO cis (regNo, problems) VALUES ('$regNo', '$Description')";
+
+    // Execute the query and check for success
+    if (mysqli_query($con, $query)) {
+      echo "<script>alert('Your complaint has been submitted successfully.');</script>";
+    } else {
+        echo "Error: " . mysqli_error($con);
+    }
+}
+
+// Close the database connection
+mysqli_close($con);
+?>
 
 
 
