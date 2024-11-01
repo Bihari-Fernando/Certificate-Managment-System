@@ -4,10 +4,10 @@ include "../connect.php";
 
 // Handle the verification request
 if (isset($_POST['verify'])) {
-    $regNo = $_POST['regNo'];
+    $id = $_POST['id'];
 
     // Update query to set status to 'V' (Verified)
-    $updateQuery = "UPDATE wie SET status = 'V' WHERE regNo = '$regNo'";
+    $updateQuery = "UPDATE wie SET status = 'V' WHERE id = '$id'";
     if (mysqli_query($con, $updateQuery)) {
         echo "<script>alert('Student verified successfully!');</script>";
     } else {
@@ -15,8 +15,16 @@ if (isset($_POST['verify'])) {
     }
 }
 
-// Fetch all student data from the internship table
-$query = "SELECT * FROM wie";
+// Fetch records only where all specified fields are set and not empty
+$query = "SELECT id, regNo, fullName, membership, membershipNo, sessionDate, sessionName, status 
+          FROM wie 
+          WHERE regNo IS NOT NULL AND regNo != '' 
+          AND fullName IS NOT NULL AND fullName != '' 
+          AND membership IS NOT NULL AND membership != '' 
+          AND membershipNo IS NOT NULL AND membershipNo != '' 
+          AND sessionName IS NOT NULL AND sessionName != ''
+          AND sessionDate IS NOT NULL AND sessionDate != ''
+          AND status != 'V'";
 $result = mysqli_query($con, $query);
 ?>
 
@@ -145,7 +153,7 @@ $result = mysqli_query($con, $query);
                         </td>
                         <td>
                             <form method="POST" action="">
-                                <input type="hidden" name="regNo" value="<?php echo $row['regNo']; ?>">
+                                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                 <button type="submit" name="verify" class="btn" 
                                     <?php echo ($row['status'] == 'V') ? 'disabled' : ''; ?>>
                                     Verify
