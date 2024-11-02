@@ -21,7 +21,7 @@ $query = "SELECT id, regNo, fullName, membership, membershipNo, sessionDate, ses
           WHERE regNo IS NOT NULL AND regNo != '' 
           AND fullName IS NOT NULL AND fullName != '' 
           AND membership IS NOT NULL AND membership != '' 
-          AND membershipNo IS NOT NULL AND membershipNo != '' 
+          
           AND sessionName IS NOT NULL AND sessionName != ''
           AND sessionDate IS NOT NULL AND sessionDate != ''
           AND status != 'V'";

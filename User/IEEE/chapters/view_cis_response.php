@@ -48,7 +48,7 @@ if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $problem = htmlspecialchars($row['problems']);
     $response = htmlspecialchars($row['responses']);
-?>
+?>                      
 <!DOCTYPE html>
 <html lang="en">
 <head>
