@@ -55,7 +55,7 @@
 
                     // SQL query to retrieve user details based on the username
                     $sql = "SELECT * FROM adminlogin WHERE username = '$logged_in_username'";
-                    $result=mysqli_query($con,$sql);
+                    $result=mysqli_query($conn,$sql);
 
                     if (mysqli_num_rows($result)>0) {
                         $row = $result->fetch_assoc();
@@ -63,7 +63,7 @@
                         
                         echo "Name: " . $row["username"] . "<br>";
                         echo "Type: " . $row["type"] . "<br>";
-                        echo "Department: " . $row["department"] . "<br>";
+                        
                         echo "Employee ID: " . $row["employeeID"] . "<br>";
                         
                         // You can add more user details as needed
@@ -72,7 +72,7 @@
                     }
 
                     // Close the database connection
-                    $con->close();
+                    $conn->close();
 
                   ?>
 

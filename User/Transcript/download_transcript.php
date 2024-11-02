@@ -2,9 +2,9 @@
 
 ob_start();
 session_start();
-include "connect.php";
+include "../connect.php";
 $regNo = $_SESSION['username'];
-$query = "SELECT * from student WHERE regNo = '$regNo'";
+$query = "SELECT * from transcript WHERE regNo = '$regNo'";
 $res = mysqli_query($con, $query);
 
 $obj = mysqli_fetch_assoc($res);
@@ -15,7 +15,7 @@ $obj = mysqli_fetch_assoc($res);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OCDS | Download Certificate</title>
+  <title>Download Certificate</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
@@ -37,43 +37,13 @@ $obj = mysqli_fetch_assoc($res);
     <div class="card complaint-card"   id='in'>
         <div class="certificate-code">
           <p style="font-size:12px"><span style="color:red;">*</span> Computer generated copy</p>
-          <p class="code"><?php echo $obj['certificateID'] ?></p>
+          
         </div>
         <div class="certificate-title">
           <h3 class="title">University of Jaffna, Sri Lanka</h3>
           <h4 class="sub-title">Academic Transcript</h4>
         </div>
-      <!--
-    <div class="certificateNo: ">
-      <form action="" method="post">
-        <span>Certificate No: </span><input type="text" name="certifcate">
-        <input type="submit" name="certify" value="certify">
-      </form>
-    </div>
--->
      
-
-
-       <!-- <script>
-  // Function to generate PDF
-  function generatePDF() {
-    // Create a new jsPDF instance
-    const doc = new jsPDF();
-
-    // Get the content of your web page
-    const content = document.getElementById('content-to-pdf');
-
-    // Add the content to the PDF
-    doc.addHTML(content, function () {
-      // Save the PDF as "output.pdf"
-      doc.save('output.pdf');
-    });
-  } -->
-
-   <!-- Attach a click event listener to the button
-  document.getElementById('download-pdf').addEventListener('click', generatePDF);
-</script>  -->
-       
           <div class="certificate-details">
 
             <div class="detail-row-grid2">

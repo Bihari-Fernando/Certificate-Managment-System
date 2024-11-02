@@ -35,7 +35,7 @@ $queries = [
     'IEEE CS Session Certificate' => "SELECT effectiveDate,id, status FROM cs WHERE regNo = '$regNo'",
     'IEEE CIS Session Certificate' => "SELECT effectiveDate,id, status FROM cis WHERE regNo = '$regNo'",
     'IEEE WIE Session Certificate' => "SELECT effectiveDate,id, status FROM wie WHERE regNo = '$regNo'",
-    //'Degree Transcript' => "SELECT effectiveDate, status FROM transcript WHERE regNo = '$regNo'",
+    'Degree Transcript' => "SELECT  effectiveDate,status FROM transcript WHERE regNo = '$regNo'",
 ];
 
 // Store certificate results
@@ -705,7 +705,7 @@ a:focus {
                 <thead>
                     <tr>
                         <th>Certificate Type</th>
-                        <th>Date</th>
+                        <th>Requested Date</th>
                         <th>Status</th>
                     </tr>
                 </thead>
