@@ -73,7 +73,7 @@
                             }
 
                             // Get total number of records
-                            $result = $con->query($sql);
+                            $result = $conn->query($sql);
                             $total_records = $result->num_rows;
 
                             // Calculate the number of pages
@@ -84,7 +84,7 @@
                             $sql .= " LIMIT $offset, $results_per_page";
 
                             // Execute the final SQL query
-                            $result = $con->query($sql);
+                            $result = $conn->query($sql);
 
                             // Display search form
                             echo '<div class = "search">';

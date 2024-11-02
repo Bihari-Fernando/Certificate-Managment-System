@@ -39,7 +39,7 @@
             include "connect.php";
             session_start();
 
-            if (!isset($_SESSION["username"]) || $_SESSION["type"] !== "Exam Admin") {
+            if (!isset($_SESSION["username"]) ) {
                 header("Location: ../Adminlogin.php"); // Redirect to the login page if not logged in as an admin
                 exit();
             }
@@ -49,14 +49,14 @@
 
                 $regNo=$_POST['regNo'];
                 $fullName=$_POST['fullName'];
-                $faculty=$_POST['faculty'];
+                
                 $nic=$_POST['nic'];
                 $date=$_POST['date'];
                 $type=$_POST['type'];
                 $description=$_POST['description'];
                 
-                $query="INSERT INTO problems(regNo,name,faculty,nic,date,type,description) VALUES('$regNo','$fullName','$faculty','$nic','$date','$type','$description')";
-                mysqli_query($con,$query);
+                $query="INSERT INTO problems(regNo,name,nic,date,type,description) VALUES('$regNo','$fullName','$faculty','$nic','$date','$type','$description')";
+                mysqli_query($conn,$query);
                 header("location:addDetails.php");
                 }
 
@@ -76,10 +76,7 @@
                             <p>Full Name</p>
                             <input type="text" name="fullName">
                         </div><!--studentinput-->
-                        <div class="studentinput">
-                            <p>Faculty</p>
-                            <input type="text" name="faculty">
-                        </div><!--studentinput-->
+                        
                         
                         <div class="studentinput">
                             <p>NIC Number</p>

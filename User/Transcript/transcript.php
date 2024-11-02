@@ -13,7 +13,7 @@ if (isset($_POST['request'])) {
     $contact = $_POST['contact'];
     $email = $_POST['mail'];
     $imageFile = $_FILES['payment'];
-    $appnumber=mt_rand(100000000, 999999999);
+    $effectiveDate = date('Y-m-d');
 
     if ($imageFile['error'] === 0) {
        
@@ -22,10 +22,13 @@ if (isset($_POST['request'])) {
         $filePath = $uploadDir . $fileName;
 
         if (move_uploaded_file($imageFile['tmp_name'], $filePath)) {
-			$query = "UPDATE student set fullName='$fullName', address='$address', contactNo=' $contact',status='R',certificateID='$appnumber', email='$email', fileName='$fileName' WHERE regNo='$regNo'";
-			mysqli_query($con, $query);
+          $query = "INSERT INTO transcript (regNo, fullName, address, contactNo, status, email, fileName, effectiveDate) 
+          VALUES ('$regNo', '$fullName', '$address', '$contact', 'R', '$email', '$fileName', '$effectiveDate')";
+
+			
+      mysqli_query($con, $query);
             echo "<script> alert('Image uploaded successfully!')</script>";
-            header("Location: UserDashboard.php");
+            header("Location: transcript.php");
         } else {
             echo "Error uploading image.";
         }
@@ -85,21 +88,25 @@ if (isset($_POST['request'])) {
             </div>
             
           <div class="btn-row">
-            <a href="UserDashboard.php" class="btn outline-btn">Back</a>
+            <a href="../UserDashboard.php" class="btn outline-btn">Back</a>
             <input
               class="btn fill-btn"
               type="submit"
               name='request'
-              value="Request_Certificate"/>
+              value="Request"/>
           </div>
 
           
         </form>
       </div>
-    </div>
+    </div><br>
+    
+    <div class="btn-row-inquiry">
+            <a class="btn outline-btn" href="Complaints.php">File any inquiries</a>
+</div><br><br>
     <div class="footer">
       <p class="copyright">
-        COPYRIGHT &copy; 2023 FACULTY OF SCIENCE UNIVERSITY OF JAFFNA. ALL
+        COPYRIGHT &copy; 2024 Department of Computer Science UNIVERSITY of JAFFNA. ALL
         RIGHTS RESERVED.
       </p>
     </div>
