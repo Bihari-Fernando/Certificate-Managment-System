@@ -30,12 +30,12 @@ if (isset($_POST['regno'])) {
 
 // Define queries for certificates
 $queries = [
-    'Top Graded Student Certificate' => "SELECT effectiveDate,id, status FROM topstudents WHERE regNo = '$regNo'",
-    'Internship Certificate' => "SELECT effectiveDate,id, status FROM internship WHERE regNo = '$regNo'",
-    'IEEE CS Session Certificate' => "SELECT effectiveDate,id, status FROM cs WHERE regNo = '$regNo'",
-    'IEEE CIS Session Certificate' => "SELECT effectiveDate,id, status FROM cis WHERE regNo = '$regNo'",
-    'IEEE WIE Session Certificate' => "SELECT effectiveDate,id, status FROM wie WHERE regNo = '$regNo'",
-    'Degree Transcript' => "SELECT  effectiveDate,status FROM transcript WHERE regNo = '$regNo'",
+    'Top Graded Student Certificate' => "SELECT requestedDate,id, status FROM topstudents WHERE regNo = '$regNo'",
+    'Internship Certificate' => "SELECT requestedDate,id, status FROM internship WHERE regNo = '$regNo'",
+    'IEEE CS Session Certificate' => "SELECT requestedDate,id, status FROM cs WHERE regNo = '$regNo'",
+    'IEEE CIS Session Certificate' => "SELECT requestedDate,id, status FROM cis WHERE regNo = '$regNo'",
+    'IEEE WIE Session Certificate' => "SELECT requestedDate,id, status FROM wie WHERE regNo = '$regNo'",
+    'Degree Transcript' => "SELECT effectiveDate, requestedDate,status FROM transcript WHERE regNo = '$regNo'",
 ];
 
 // Store certificate results
@@ -49,6 +49,7 @@ foreach ($queries as $type => $query) {
         $certificates[] = [
             'type' => $type,
             'effectiveDate' => $row['effectiveDate'] ?? 'N/A',
+            'requestedDate' => $row['requestedDate'] ?? 'N/A',
             'status' => $row['status'] ?? 'N/A',
             'id' => $row['id'] ?? null
         ];
@@ -711,10 +712,18 @@ a:focus {
                 </thead>
                 <tbody>
                 <?php foreach ($certificates as $certificate): ?>
-    <?php if (!empty($certificate['effectiveDate']) && $certificate['effectiveDate'] !== '0000-00-00' && $certificate['effectiveDate'] !== 'N/A'): ?>
+    <?php if (
+        (!empty($certificate['effectiveDate']) && 
+        $certificate['effectiveDate'] !== '0000-00-00' && 
+        $certificate['effectiveDate'] !== 'N/A') 
+        || 
+        (!empty($certificate['requestedDate']) && 
+        $certificate['requestedDate'] !== '0000-00-00' && 
+        $certificate['requestedDate'] !== 'N/A')
+    ): ?>
         <tr>
             <td><?php echo htmlspecialchars($certificate['type']); ?></td>
-            <td><?php echo htmlspecialchars($certificate['effectiveDate']); ?></td>
+            <td><?php echo htmlspecialchars($certificate['requestedDate']); ?></td>
             <td>
                 <?php if ($certificate['status'] == 'V'): ?>
                     <a href="<?php echo $downloadLinks[$certificate['type']] . '?id=' . urlencode($certificate['id']); ?>" class="btn fill-btn">
