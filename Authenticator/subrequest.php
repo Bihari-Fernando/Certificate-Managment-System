@@ -45,7 +45,7 @@
             session_start();
 
             // Check if the user is not logged in
-            if (!isset($_SESSION["username"]) || $_SESSION["type"] !== "Authenticator") {
+            if (!isset($_SESSION["username"]) ) {
                 header("Location: ../Adminlogin.php"); // Redirect to the login page if not logged in as an admin
                 exit();
             }
@@ -56,7 +56,7 @@
 
                 $query = "UPDATE student SET  status='I' WHERE regNo='$regNo'";
                 echo $query;
-                mysqli_query($con, $query);
+                mysqli_query($conn, $query);
                 header("location:managerequest.php");
             }
 
@@ -64,19 +64,19 @@
                 //echo $regNo;
                 $regNo=$_POST['regNo'];
 
-                $query = "UPDATE student SET  status='A' WHERE regNo='$regNo'";
+                $query = "UPDATE transcript SET  status='A' WHERE regNo='$regNo'";
                 echo $query;
-                mysqli_query($con, $query);
+                mysqli_query($conn, $query);
                 header("location:managerequest.php");
             }
 
 
             function getStdData($regNo)
             {
-                global $con;
-                $query = " SELECT * from student where regNo='$regNo' ";
+                global $conn;
+                $query = " SELECT * from transcript where regNo='$regNo' ";
 
-                $result = mysqli_query($con, $query);
+                $result = mysqli_query($conn, $query);
                 if (mysqli_num_rows($result) > 0) {
                     return mysqli_fetch_array($result);
                 }
@@ -101,10 +101,7 @@
                     <td>:<?php echo $updateRegRow['fullName']; ?></td>
                 </tr>
 
-                <tr>
-                    <td>Faculty </td>
-                    <td>:<?php echo $updateRegRow['faculty']; ?></td>
-                </tr>
+                
 
                 <tr>
                     <td>Study Program </td>

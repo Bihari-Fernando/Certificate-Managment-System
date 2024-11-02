@@ -52,14 +52,14 @@
                             if (isset($_POST['update'])) {
                                 $regNo = (isset($_POST['regNo']) ? $_POST['regNo'] : null);
                                 $fullName = (isset($_POST['name']) ? $_POST['name'] : null);
-                                $faculty = (isset($_POST['faculty']) ? $_POST['faculty'] : null);
+                                
                                 $nic = (isset($_POST['nic']) ? $_POST['nic'] : null);
                                 $date = (isset($_POST['date']) ? $_POST['date'] : null);
                                 $type = (isset($_POST['type']) ? $_POST['type'] : null);
                                 $description = (isset($_POST['description']) ? $_POST['description'] : null);
                                
-                                $query = "UPDATE problems SET name='$fullName', faculty='$faculty',nic='$nic', date='$date',type='$type',description='$description' WHERE regNo='$regNo' ";
-                                $result = mysqli_query($con, $query);
+                                $query = "UPDATE problems SET name='$fullName', nic='$nic', date='$date',type='$type',description='$description' WHERE regNo='$regNo' ";
+                                $result = mysqli_query($conn, $query);
 
                                 header("location:mainupdate.php");
                             }

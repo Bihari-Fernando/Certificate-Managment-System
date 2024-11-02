@@ -63,28 +63,31 @@
                             // Create a WHERE clause for the search
                             $search_conditions = [];
                             if (!empty($search_query)) {
-                                $search_conditions[] = "regNo LIKE '%$search_query%' OR indexNo LIKE '%$search_query%' OR fullName LIKE '%$search_query%' OR faculty LIKE '%$search_query%'";
+                                $search_conditions[] = "regNo LIKE '%$search_query%' OR indexNo LIKE '%$search_query%' OR fullName LIKE '%$search_query%' ";
                             }
 
-                            // Build the SQL query
-                            $sql = "SELECT * FROM student where status='N'";
-                            if (!empty($search_conditions)) {
-                                $sql .= " WHERE " . implode(" OR ", $search_conditions);
-                            }
+                            // Base query with status condition
+$sql = "SELECT * FROM transcript WHERE status='N'";
 
-                            // Get total number of records
-                            $result = $conn->query($sql);
-                            $total_records = $result->num_rows;
+if (!empty($search_conditions)) {
+    // Append conditions with `AND` to avoid double `WHERE`
+    $sql .= " AND (" . implode(" OR ", $search_conditions) . ")";
+}
 
-                            // Calculate the number of pages
-                            $total_pages = ceil($total_records / $results_per_page);
+// Get total number of records
+$result = $conn->query($sql);
+$total_records = $result->num_rows;
 
-                            // Calculate the SQL LIMIT clause
-                            $offset = ($page - 1) * $results_per_page;
-                            $sql .= " LIMIT $offset, $results_per_page";
+// Calculate pagination
+$total_pages = ceil($total_records / $results_per_page);
+$offset = ($page - 1) * $results_per_page;
 
-                            // Execute the final SQL query
-                            $result = $conn->query($sql);
+// Add LIMIT clause
+$sql .= " LIMIT $offset, $results_per_page";
+
+// Execute the final SQL query
+$result = $conn->query($sql);
+
 
                             // Display search form
                             echo '<div class = "search">';
@@ -99,13 +102,13 @@
 
                             
                             <table>
-                            <tr><th>Reg No</th><th>Index No</th><th>Full Name</th><th>Faculty</th><th>Action</th></tr>
+                            <tr><th>Reg No</th><th>Index No</th><th>Full Name</th><th>Action</th></tr>
                             <?php while ($row = $result->fetch_assoc()) { ?>
                                 <tr>
                                 <td> <?php echo $row['regNo']  ?> </td>
                                 <td><?php echo $row['indexNo']  ?></td>
                                 <td><?php echo $row['fullName']  ?></td>
-                                <td><?php echo $row['faculty']  ?></td>
+                                
                                 <td> <a href="subnewpage.php?regNo=<?php echo $row['regNo'] ?>"><button id = "updateButton">View<button></a> </td>
                                 </tr>
                             <?php } ?>
@@ -121,7 +124,7 @@
                             echo '</div>';
 
                             // Close the database connection
-                            $con->close();
+                            $conn->close();
                             ?>
 
                          <button type="submit" name="searchBtn" value="Search"></button> 

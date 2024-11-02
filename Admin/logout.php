@@ -5,7 +5,7 @@ include "connect.php";
 session_start();
 
 // Check if the user is already logged in
-if (!isset($_SESSION["username"]) || $_SESSION["type"] !== "Exam Admin") {
+if (!isset($_SESSION["username"]) ) {
     header("Location: Adminlogin.php"); // Redirect to the login page if not logged in as an admin
     exit();
 }

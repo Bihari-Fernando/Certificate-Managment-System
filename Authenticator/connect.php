@@ -5,8 +5,8 @@ $username="root";
 $password="";
 $dbname="certificate";
 
-$con=mysqli_connect($hostname,$username,$password,$dbname);
-if(!$con){
+$conn=mysqli_connect($hostname,$username,$password,$dbname);
+if(!$conn){
     die("Connection faild : ".mysqli_connect_error());
 }
 

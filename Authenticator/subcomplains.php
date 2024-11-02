@@ -46,7 +46,7 @@
             session_start();
 
             // Check if the user is not logged in
-            if (!isset($_SESSION["username"]) || $_SESSION["type"] !== "Authenticator") {
+            if (!isset($_SESSION["username"]) ) {
                 header("Location: ../Adminlogin.php"); // Redirect to the login page if not logged in as an admin
                 exit();
             }
@@ -55,10 +55,10 @@
 
             function getStdData($regNo)
             {
-                global $con;
-                $query = " SELECT * from complaints where regNo='$regNo' ";
+                global $conn;
+                $query = " SELECT * from complaintss where regNo='$regNo' ";
 
-                $result = mysqli_query($con, $query);
+                $result = mysqli_query($conn, $query);
                 if (mysqli_num_rows($result) > 0) {
                     return mysqli_fetch_array($result);
                 }

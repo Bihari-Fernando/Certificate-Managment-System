@@ -48,7 +48,7 @@
                             session_start();
 
                                 // Check if the user is not logged in
-                            if (!isset($_SESSION["username"]) || $_SESSION["type"] !== "Authenticator") {
+                            if (!isset($_SESSION["username"]) ) {
                                     header("Location: ../Adminlogin.php"); // Redirect to the login page if not logged in as an admin
                                     exit();
                                 }
@@ -64,7 +64,7 @@
                             // Create a WHERE clause for the search
                             $search_conditions = [];
                             if (!empty($search_query)) {
-                                $search_conditions[] = "regNo LIKE '%$search_query%' OR name LIKE '%$search_query%' OR nic LIKE '%$search_query%' OR faculty LIKE '%$search_query%'";
+                                $search_conditions[] = "regNo LIKE '%$search_query%' OR name LIKE '%$search_query%' ";
                             }
 
                             // Build the SQL query
@@ -74,7 +74,7 @@
                             }
 
                             // Get total number of records
-                            $result = $con->query($sql);
+                            $result = $conn->query($sql);
                             $total_records = $result->num_rows;
 
                             // Calculate the number of pages
@@ -85,7 +85,7 @@
                             $sql .= " LIMIT $offset, $results_per_page";
 
                             // Execute the final SQL query
-                            $result = $con->query($sql);
+                            $result = $conn->query($sql);
 
                             // Display search form
                             echo '<div class = "search">';
@@ -100,13 +100,13 @@
 
                             
 <table>
-                            <tr><th>Reg No</th><th>Index No</th><th>Full Name</th><th>Faculty</th><th>Action</th></tr>
+                            <tr><th>Reg No</th><th>Index No</th><th>Full Name</th><th>Action</th></tr>
                             <?php while ($row = $result->fetch_assoc()) { ?>
                                 <tr>
                                 <td> <?php echo $row['regNo']  ?> </td>
                                 <td><?php echo $row['name']  ?></td>
                                 <td><?php echo $row['nic']  ?></td>
-                                <td><?php echo $row['faculty']  ?></td>
+                                
                                 <td><a href="subproblems.php?regNo=<?php echo $row['regNo'] ?>"><button id = "updateButton">View<button></a> </td>
                                 </tr>
                             <?php } ?>
@@ -122,7 +122,7 @@
                             echo '</div>';
 
                             // Close the database connection
-                            $con->close();
+                            $conn->close();
                             ?>
 
                          <button type="submit" name="searchBtn" value="Search"></button> 

@@ -60,7 +60,7 @@
                             // Create a WHERE clause for the search
                             $search_conditions = [];
                             if (!empty($search_query)) {
-                                $search_conditions[] = "regNo LIKE '%$search_query%' OR name LIKE '%$search_query%' OR nic LIKE '%$search_query%' OR faculty LIKE '%$search_query%'";
+                                $search_conditions[] = "regNo LIKE '%$search_query%' OR name LIKE '%$search_query%' OR nic LIKE '%$search_query%' ";
                             }
 
                             // Build the SQL query
