@@ -10,6 +10,11 @@ $query = "SELECT * FROM students WHERE regNo = '$regNo'";
 $res = mysqli_query($con, $query);
 $obj = mysqli_fetch_assoc($res);
 
+if (!empty($obj['profile_picture']) && file_exists("uploads/" . $obj['profile_picture'])) {
+  $profilePicture = "uploads/" . htmlspecialchars($obj['profile_picture']);
+}
+
+ 
 // Check for inquiries
 if (isset($_POST['regno'])) {
     $sql = "SELECT * FROM problems WHERE regNo = '$regNo'";
@@ -672,7 +677,7 @@ a:focus {
             <div class="grid-col-3">
                 <div class="profile">
                     <div class="icon-bg profile-bg">
-                        <i class="fa-solid fa-user"></i>
+                    <img src="<?php echo $profilePicture; ?>" alt="Profile Picture" style="max-width: 200px; height: auto;">
                     </div>
                     <h4><?php echo htmlspecialchars($obj['fullName']); ?></h4>
                     <p><?php echo htmlspecialchars($obj['regNo']); ?></p>

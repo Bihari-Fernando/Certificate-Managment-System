@@ -220,6 +220,7 @@ if (move_uploaded_file($profile_picture["tmp_name"], $targetFile)) {
 
         <input type="submit" value="Register">
     </form>
+    
 
 </body>
 
