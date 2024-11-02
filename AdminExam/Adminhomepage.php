@@ -44,7 +44,7 @@
                     session_start();
 
                     // Check if the user is not logged in
-                    if (!isset($_SESSION["username"]) || $_SESSION["type"] !== "Admin") {
+                    if (!isset($_SESSION["username"]) ) {
                         header("Location: ../Adminlogin.php"); // Redirect to the login page if not logged in as an admin
                         exit();
                     }
@@ -61,7 +61,7 @@
                         
                         echo "Name: " . $row["username"] . "<br>";
                         echo "Type: " . $row["type"] . "<br>";
-                        echo "Department: " . $row["department"] . "<br>";
+                        
                         echo "Employee ID: " . $row["employeeID"] . "<br>";
                         
                         // You can add more user details as needed

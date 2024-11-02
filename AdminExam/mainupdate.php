@@ -46,7 +46,7 @@
                             session_start();
 
                                 // Check if the user is not logged in
-                            if (!isset($_SESSION["username"]) || $_SESSION["type"] !== "Admin") {
+                            if (!isset($_SESSION["username"]) ) {
                                     header("Location: ../Adminlogin.php"); // Redirect to the login page if not logged in as an admin
                                     exit();
                                 }
@@ -62,11 +62,11 @@
                             // Create a WHERE clause for the search
                             $search_conditions = [];
                             if (!empty($search_query)) {
-                                $search_conditions[] = "regNo LIKE '%$search_query%' OR indexNo LIKE '%$search_query%' OR fullName LIKE '%$search_query%' OR faculty LIKE '%$search_query%'";
+                                $search_conditions[] = "regNo LIKE '%$search_query%' OR indexNo LIKE '%$search_query%' OR fullName LIKE '%$search_query%'";
                             }
 
                             // Build the SQL query
-                            $sql = "SELECT * FROM student";
+                            $sql = "SELECT * FROM transcript";
                             if (!empty($search_conditions)) {
                                 $sql .= " WHERE " . implode(" OR ", $search_conditions);
                             }
@@ -97,13 +97,13 @@
                            
                             
                             <table>
-                            <tr><th>Reg No</th><th>Index No</th><th>Full Name</th><th>Faculty</th><th>Action</th></tr>
+                            <tr><th>Reg No</th><th>Index No</th><th>Full Name</th><th>Action</th></tr>
                             <?php while ($row = $result->fetch_assoc()) { ?>
                                 <tr>
                                 <td> <?php echo $row['regNo']  ?> </td>
                                 <td><?php echo $row['indexNo']  ?></td>
                                 <td><?php echo $row['fullName']  ?></td>
-                                <td><?php echo $row['faculty']  ?></td>
+                                
                                 <td><a href="subupdate.php?regNo=<?php echo $row['regNo'] ?>"><button id = "updateButton">Update<button></a> </td>
                                 </tr>
                             <?php } ?>

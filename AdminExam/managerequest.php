@@ -46,7 +46,7 @@
                             session_start();
 
                                 // Check if the user is not logged in
-                            if (!isset($_SESSION["username"]) || $_SESSION["type"] !== "Admin") {
+                            if (!isset($_SESSION["username"]) ) {
                                     header("Location: ../Adminlogin.php"); // Redirect to the login page if not logged in as an admin
                                     exit();
                                 }
@@ -62,28 +62,30 @@
                             // Create a WHERE clause for the search
                             $search_conditions = [];
                             if (!empty($search_query)) {
-                                $search_conditions[] = "regNo LIKE '%$search_query%' OR indexNo LIKE '%$search_query%' OR fullName LIKE '%$search_query%' OR faculty LIKE '%$search_query%'";
+                                $search_conditions[] = "regNo LIKE '%$search_query%' OR indexNo LIKE '%$search_query%' OR fullName LIKE '%$search_query%' ";
                             }
 
                             // Build the SQL query
-                            $sql = "SELECT * FROM student WHERE status='R'";
-                            if (!empty($search_conditions)) {
-                                $sql .= " WHERE " . implode(" OR ", $search_conditions);
-                            }
+$sql = "SELECT * FROM transcript WHERE status='R'";
+if (!empty($search_conditions)) {
+    // Change 'WHERE' to 'AND' since there's already a WHERE clause
+    $sql .= " AND (" . implode(" OR ", $search_conditions) . ")";
+}
 
-                            // Get total number of records
-                            $result = $con->query($sql);
-                            $total_records = $result->num_rows;
+// Get total number of records
+$result = $con->query($sql);
+$total_records = $result->num_rows;
 
-                            // Calculate the number of pages
-                            $total_pages = ceil($total_records / $results_per_page);
+// Calculate the number of pages
+$total_pages = ceil($total_records / $results_per_page);
 
-                            // Calculate the SQL LIMIT clause
-                            $offset = ($page - 1) * $results_per_page;
-                            $sql .= " LIMIT $offset, $results_per_page";
+// Calculate the SQL LIMIT clause
+$offset = ($page - 1) * $results_per_page;
+$sql .= " LIMIT $offset, $results_per_page";
 
-                            // Execute the final SQL query
-                            $result = $con->query($sql);
+// Execute the final SQL query
+$result = $con->query($sql);
+
 
                             // Display search form
                             echo '<div class = "search">';
@@ -97,13 +99,13 @@
 
                             
                             <table>
-                            <tr><th>Reg No</th><th>Index No</th><th>Full Name</th><th>Faculty</th><th>Action</th></tr>
+                            <tr><th>Reg No</th><th>Index No</th><th>Full Name</th><th>Action</th></tr>
                             <?php while ($row = $result->fetch_assoc()) { ?>
                                 <tr>
                                 <td> <?php echo $row['regNo']  ?> </td>
                                 <td><?php echo $row['indexNo']  ?></td>
                                 <td><?php echo $row['fullName']  ?></td>
-                                <td><?php echo $row['faculty']  ?></td>
+                                
                                 <td><a href="subrequest.php?regNo=<?php echo $row['regNo'] ?>"><button id = "updateButton">View<button></a> </td>
                                 </tr>
                             <?php } ?>

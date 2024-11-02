@@ -43,7 +43,7 @@
             session_start();
 
             // Check if the user is not logged in
-            if (!isset($_SESSION["username"]) || $_SESSION["type"] !== "Admin") {
+            if (!isset($_SESSION["username"]) ) {
                 header("Location: ../Adminlogin.php"); // Redirect to the login page if not logged in as an admin
                 exit();
             }
@@ -53,7 +53,7 @@
             function getStdData($regNo)
             {
                 global $con;
-                $query = " SELECT * from student where regNo='$regNo' ";
+                $query = " SELECT * from transcript where regNo='$regNo' ";
 
                 $result = mysqli_query($con, $query);
                 if (mysqli_num_rows($result) > 0) {
@@ -79,10 +79,7 @@
                     <td>:<?php echo $updateRegRow['fullName']; ?></td>
                 </tr>
 
-                <tr>
-                    <td>Faculty </td>
-                    <td>:<?php echo $updateRegRow['faculty']; ?></td>
-                </tr>
+                
 
                 <tr>
                     <td>Study Program </td>

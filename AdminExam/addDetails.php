@@ -39,7 +39,7 @@
             include "connect.php";
             session_start();
 
-            if (!isset($_SESSION["username"]) || $_SESSION["type"] !== "Admin") {
+            if (!isset($_SESSION["username"]) ) {
                 header("Location: ../Adminlogin.php"); // Redirect to the login page if not logged in as an admin
                 exit();
             }
@@ -49,7 +49,7 @@
 
                 $regNo=$_POST['regNo'];
                 $fullName=$_POST['fullName'];
-                $faculty=$_POST['faculty'];
+                
                 $studyProgram=$_POST['studyProgram'];
                 $indexNo=$_POST['indexNo'];
                 $nic=$_POST['nic'];
@@ -63,7 +63,7 @@
                 $effectiveDate=$_POST['effectiveDate'];
                // $status=$_POST['status'];
 
-                $query=" SELECT * from student where regNo='$regNo' ";
+                $query=" SELECT * from transcript where regNo='$regNo' ";
                 
                 $result=mysqli_query($con,$query);
                 
@@ -71,7 +71,7 @@
                     echo "<script>alert('Reg No or NIC or Index No taken by someone.')</script>";
                 }
                 else{
-                    $query="INSERT INTO student(regNo,fullName,faculty,studyProgram,indexNo,nic,address,contactNo,email,academicYear,studyType,ogpa,degreeClass,effectiveDate,status) VALUES('$regNo','$fullName','$faculty','$studyProgram','$indexNo','$nic','$address','$contactNo','$email','$academicYear','$studyType','$ogpa','$degreeClass','$effectiveDate','N')";
+                    $query="INSERT INTO student(regNo,fullName,studyProgram,indexNo,nic,address,contactNo,email,academicYear,studyType,ogpa,degreeClass,effectiveDate,status) VALUES('$regNo','$fullName','$studyProgram','$indexNo','$nic','$address','$contactNo','$email','$academicYear','$studyType','$ogpa','$degreeClass','$effectiveDate','N')";
                     mysqli_query($con,$query);
                     //echo $query;
                     //exit;
@@ -101,10 +101,7 @@
                             <p>Full Name</p>
                             <input type="text" name="fullName">
                         </div><!--studentinput-->
-                        <div class="studentinput">
-                            <p>Faculty</p>
-                            <input type="text" name="faculty">
-                        </div><!--studentinput-->
+                        
                         <div class="studentinput">
                             <p>Study Program</p>
                             <input type="text" name="studyProgram">

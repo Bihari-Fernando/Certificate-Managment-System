@@ -45,7 +45,7 @@
                             session_start();
 
                             // Check if the user is not logged in
-                            if (!isset($_SESSION["username"]) || $_SESSION["type"] !== "Admin") {
+                            if (!isset($_SESSION["username"]) ) {
                                 header("Location: ../Adminlogin.php"); // Redirect to the login page if not logged in as an admin
                                 exit();
                             }
@@ -53,7 +53,7 @@
                             if (isset($_POST['update'])) {
                                 $regNo = (isset($_POST['regNo']) ? $_POST['regNo'] : null);
                                 $fullName = (isset($_POST['fullName']) ? $_POST['fullName'] : null);
-                                $faculty = (isset($_POST['faculty']) ? $_POST['faculty'] : null);
+                                
                                 $studyProgram = (isset($_POST['studyProgram']) ? $_POST['studyProgram'] : null);
                                 $indexNo = (isset($_POST['indexNo']) ? $_POST['indexNo'] : null);
                                 $nic = (isset($_POST['nic']) ? $_POST['nic'] : null);
@@ -70,7 +70,7 @@
                                 //Debug
 
 
-                                $query = "UPDATE student SET fullName='$fullName', faculty='$faculty', studyProgram='$studyProgram', indexNo='$indexNo', nic='$nic', address='$address', contactNo=$contactNo, email='$email', academicYear='$academicYear', studyType='$studyType', ogpa='$ogpa', degreeClass='$degreeClass', effectiveDate='$effectiveDate', status='U' WHERE regNo='$regNo' ";
+                                $query = "UPDATE transcript SET fullName='$fullName', studyProgram='$studyProgram', indexNo='$indexNo', nic='$nic', address='$address', contactNo=$contactNo, email='$email', academicYear='$academicYear', studyType='$studyType', ogpa='$ogpa', degreeClass='$degreeClass', effectiveDate='$effectiveDate', status='U' WHERE regNo='$regNo' ";
                                 // $query = " SELECT * from student where regNo='$regNo' ";
                                // echo $query;
                                 $result = mysqli_query($con, $query);
@@ -85,7 +85,7 @@
                             function getStdData($regNo)
                             {
                                 global $con;
-                                $query = " SELECT * from student where regNo='$regNo' ";
+                                $query = " SELECT * from transcript where regNo='$regNo' ";
 
                                 $result = mysqli_query($con, $query);
                                 if (mysqli_num_rows($result) > 0) {
@@ -105,10 +105,7 @@
                                 <p>Full Name</p>
                                 <input type="text" name="fullName" value=<?php echo $updateRegRow['fullName']; ?>>
                             </div><!--studentinput-->
-                            <div class="studentinput">
-                                <p>Faculty</p>
-                                <input type="text" name="faculty" value=<?php echo $updateRegRow['faculty']; ?>>
-                            </div><!--studentinput-->
+                            
                             <div class="studentinput">
                                 <p>Study Program</p>
                                 <input type="text" name="studyProgram" value=<?php echo $updateRegRow['studyProgram']; ?>>
