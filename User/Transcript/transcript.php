@@ -13,7 +13,7 @@ if (isset($_POST['request'])) {
     $contact = $_POST['contact'];
     $email = $_POST['mail'];
     $imageFile = $_FILES['payment'];
-    $effectiveDate = date('Y-m-d');
+    $requestedDate = date('Y-m-d');
 
     if ($imageFile['error'] === 0) {
        
@@ -22,8 +22,8 @@ if (isset($_POST['request'])) {
         $filePath = $uploadDir . $fileName;
 
         if (move_uploaded_file($imageFile['tmp_name'], $filePath)) {
-          $query = "INSERT INTO transcript (regNo, fullName, address, contactNo, status, email, fileName, effectiveDate) 
-          VALUES ('$regNo', '$fullName', '$address', '$contact', 'R', '$email', '$fileName', '$effectiveDate')";
+          $query = "INSERT INTO transcript (regNo, fullName, address, contactNo, status, email, fileName, requestedDate) 
+          VALUES ('$regNo', '$fullName', '$address', '$contact', 'R', '$email', '$fileName', '$requestedDate')";
 
 			
       mysqli_query($con, $query);
