@@ -8,11 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $companyName = $_POST['companyName'];
     $fullName = $_POST['fullName'];
     $duration = $_POST['duration'];
-    $effectiveDate = date('Y-m-d');
+    $requestedDate  = date('Y-m-d');
 
     
-    $insertQuery = "INSERT INTO internship (regNo,companyName, fullName, duration,effectiveDate) 
-                    VALUES ('$regNo','$companyName', '$fullName', '$duration','$effectiveDate')";
+    $insertQuery = "INSERT INTO internship (regNo,companyName, fullName, duration,requestedDate ) 
+                    VALUES ('$regNo','$companyName', '$fullName', '$duration','$requestedDate ')";
 
     if (mysqli_query($con, $insertQuery)) {
         echo "<script>alert('Your sent successfully!');</script>";

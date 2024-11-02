@@ -9,11 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $membershipNo = $_POST['membershipNo'];
     $sessionName =  $_POST['sessionName'];
     $sessionDate =  $_POST['sessionDate'];
-    $effectiveDate = date('Y-m-d');
+    $requestedDate = date('Y-m-d');
   
     $query = "INSERT INTO cis 
-              (fullName, regNo, membership, membershipNo, sessionName, sessionDate,effectiveDate) 
-              VALUES ('$fullName', '$regNo', '$membership', '$membershipNo', '$sessionName', '$sessionDate','$effectiveDate')";
+              (fullName, regNo, membership, membershipNo, sessionName, sessionDate,requestedDate) 
+              VALUES ('$fullName', '$regNo', '$membership', '$membershipNo', '$sessionName', '$sessionDate','$requestedDate')";
     
     if (mysqli_query($con, $query)) {
         echo "<script>alert('Your request sent successfully!');</script>";
@@ -288,7 +288,7 @@ body#Dashboard {
             <a class="btn outline-btn" href="cis_complaints.php">File any inquiries</a>
     <div class="footer">
       <p class="copyright">
-        COPYRIGHT &copy; 2023 FACULTY OF SCIENCE UNIVERSITY OF JAFFNA. ALL
+        COPYRIGHT &copy; 2024 DEPARTMENT OF COMPUTER SCIENCE UNIVERSITY OF JAFFNA. ALL
         RIGHTS RESERVED.
       </p>
     </div>
