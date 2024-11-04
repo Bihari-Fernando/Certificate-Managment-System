@@ -23,6 +23,12 @@ $query = "SELECT id, regNo, fullName, gpa, indexNo, academicYear, status
           AND gpa IS NOT NULL AND gpa != ''
           AND status != 'V'";
 
+$result = mysqli_query($con, $query);
+
+
+if (!$result) {
+    die("Error: " . mysqli_error($con));
+}
 
 ?>
 
@@ -165,7 +171,8 @@ $query = "SELECT id, regNo, fullName, gpa, indexNo, academicYear, status
     </section>                        
     
     <footer class="footer">
-        <p>COPYRIGHT &copy; 2023 FACULTY OF SCIENCE UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.</p>                   
+        <p>COPYRIGHT &copy; 2024 DEPARTMENT OF COMPUTER SCIENCE UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.</p>
     </footer>
+
 </body>
 </html>

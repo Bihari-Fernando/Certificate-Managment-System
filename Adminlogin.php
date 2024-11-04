@@ -44,11 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_type = $_POST["type"];
     $password = $_POST['password'];
 
-    // Debugging information
-    echo "<h3>Debug Info:</h3>";
-    echo "Username: " . htmlspecialchars($username) . "<br>";
-    echo "User Type: " . htmlspecialchars($user_type) . "<br>";
-    echo "Password: " . htmlspecialchars($password) . "<br><br>";
+    
 
     // Use a prepared statement to prevent SQL injection
     $stmt = $conn->prepare("SELECT * FROM adminlogin WHERE username = ? AND type = ?");
@@ -66,10 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Debugging: Print the fetched row data
     if ($row) {
-        echo "Fetched Row:<br>";
-        echo "<pre>";
-        print_r($row);
-        echo "</pre>";
+        
         
         $_SESSION["username"] = $username;
         $_SESSION["type"] = $user_type;

@@ -1,19 +1,19 @@
 <?php
 // Start a session (if not already started)
 ob_start();
-include "connect.php";
+include "../connect.php";
 session_start();
 
 // Check if the user is already logged in
-if (!isset($_SESSION["username"]) || $_SESSION["type"] !== "Exam Admin") {
-    header("Location: Adminlogin.php"); // Redirect to the login page if not logged in as an admin
+if (!isset($_SESSION["username"]) ) {
+    header("Location: ../../Adminlogin.php"); // Redirect to the login page if not logged in as an admin
     exit();
 }
 
 // If logout is requested, destroy the session and redirect to the login page
 if (isset($_GET['logout'])) {
     session_destroy();
-    header("Location: /Project/Adminlogin.php");
+    header("Location: ../../Adminlogin.php");
 
     exit();
 }
