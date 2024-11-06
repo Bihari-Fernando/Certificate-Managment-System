@@ -16,6 +16,7 @@
     <header class="heading">
         <h1>UNIVERSITY CERTIFICATE ISSUING SYSTEM - ADMIN</h1>
     </header>
+    <section>
     <div class="maincontent">
         <div class="verticalnavi">
             <ul class="nav nav-pills nav-stacked">
@@ -76,6 +77,10 @@
             </div><!--flip-card-->
         </div><!--mainbox-->
     </div><!--maincontent-->
+    </section>
+    <footer class="footer">
+        <p class="text-footer">COPYRIGHT &copy; 2024 DEPARTMENT OF COMPUTER SCIENCE UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.</p>
+    </footer>
 </body>
 
 </html>

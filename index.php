@@ -193,7 +193,7 @@
       <input type="submit" name="login" value="Sign-In">
     </form>
     <a href="registrationForm.php" class="btn">Register Now</a>
-    <a class="forgot-pw-link" href="#">Forgot Password?</a>
+    <a class="forgot-pw-link" href="forgotPw.php">Forgot Password?</a>
   </div>
 </body>
 </html>

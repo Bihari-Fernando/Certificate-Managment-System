@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    <section>
     <header class="heading">
         <h1>UNIVERSITY CERTIFICATE ISSUING SYSTEM - ADMIN</h1>
     </header>
@@ -121,6 +122,10 @@
 
 
     </div><!--maincontent-->
+    </section>
+    <footer class="footer">
+        <p class="text-footer">COPYRIGHT &copy; 2024 DEPARTMENT OF COMPUTER SCIENCE UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.</p>
+    </footer>
 
 </body>
 
