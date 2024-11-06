@@ -43,7 +43,7 @@ if (isset($_GET['logout'])) {
             height: 600px;
             margin: auto;
             display: flex;
-            background-color: rgb(200, 173, 220);
+            background-color: rgba(35, 60, 152, 0.9);
             font-family: 'Poppins', sans-serif;
             box-shadow: 4px 4px 10px rgba(114, 114, 114, 0.9);
             border-radius: 10px;
@@ -53,7 +53,7 @@ if (isset($_GET['logout'])) {
             height: 350px;
             margin: auto;
             align-items: center;
-            background-color: #fff;
+            background-color: #f3f8ff;
             font-family: 'Poppins', sans-serif;
             text-align: center;
             padding: 10px;
@@ -84,7 +84,7 @@ if (isset($_GET['logout'])) {
             width: 100px;
             border: none;
             border-radius: 20px;
-            background-color: rgb(64, 8, 123);
+            background-color: #233c98;
             color: white;
             cursor: pointer;
         }
@@ -109,7 +109,7 @@ if (isset($_GET['logout'])) {
 
             <div class="input-box">
                 <h1>User Logout</h1><br><br>
-				<img src="th.jpg" class="image">
+				<img src="logout.jpeg" class="image">
 				<p>Confirm logout?</p>
                 <form action="">
                 <button class="btn"><a class="link" href="?logout=true"></a>Logout</button><br><br>
