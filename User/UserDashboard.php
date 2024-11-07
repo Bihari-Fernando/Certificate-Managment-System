@@ -741,7 +741,6 @@ a:focus {
             </table>
         </div>
 
-        <!-- New section for viewing admin responses -->
         <div class="card request-sec">
     <h3 class="topic">Your Submitted Problems and Responses</h3>
     <table>
@@ -754,24 +753,21 @@ a:focus {
         </thead>
         <tbody>
         <?php foreach ($problems as $problem): ?>
-            <tr>
-                <td><?php echo htmlspecialchars($problem['type']); ?></td>
-                <td><?php echo htmlspecialchars($problem['problems']); ?></td>
-                
-                <td>
-                    <?php if ($problem['problem_status'] == 'V'): ?>
-                        
-                  
-                        <a href="<?php echo $responseLinks[$problem['type']] . '?regNo=' . urlencode($regNo) . '&id=' . urlencode($problem['id']); ?>" class="btn fill-btn">View</a>
+    <?php if (!empty($problem['problems']) && $problem['problems'] !== 'N/A'): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($problem['type']); ?></td>
+            <td><?php echo htmlspecialchars($problem['problems']); ?></td>
+            <td>
+                <?php if ($problem['problem_status'] == 'V'): ?>
+                    <a href="<?php echo $responseLinks[$problem['type']] . '?regNo=' . urlencode($regNo) . '&id=' . urlencode($problem['id']); ?>" class="btn fill-btn">View</a>
+                <?php else: ?>
+                    <span>In Progress</span>
+                <?php endif; ?>
+            </td>
+        </tr>
+    <?php endif; ?>
+<?php endforeach; ?>
 
-
-
-                    <?php else: ?>
-                        <span>In Progress</span>
-                    <?php endif; ?>
-                </td>
-            </tr>
-        <?php endforeach; ?>
         </tbody>
     </table>
 </div>
