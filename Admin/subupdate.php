@@ -20,7 +20,7 @@
 
 <body>
     <header class="heading">
-        <h1>UNIVERSITY CERTIFICATE ISSUING SYSTEM - ADMIN</h1>
+        <h1>UNIVERSITY CERTIFICATE ISSUING SYSTEM </h1>
     </header>
     <div class="maincontent">
         <div class="verticalnavi">
@@ -29,7 +29,7 @@
                 <li><a href="addDetails.php">Add Details</a></li>
                 <li class="active"><a href="mainupdate.php">Update Details</a></li>
                 <li><a href="viewsearch.php">View and Search</a></li>
-                <li><a href="logout.php">Log OUt</a></li>
+                <li><a href="logout.php">Log Out</a></li>
             </ul>
         </div><!--verticalnavi-->
         <div class="mainbox">

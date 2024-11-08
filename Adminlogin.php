@@ -137,15 +137,15 @@ $conn->close();
             height: 100vh;
             margin: auto;
             align-items: center;
-            background-color: rgb(88, 172, 172);
-            background-image: linear-gradient(to bottom, #dacff1, #f3f3f3, #c0c5d8);
+            background-color: #dbe6f3;
+        
         }
         .login-box {
             width: 65%;
             height: 500px;
             margin: auto;
             display: flex;
-            background-color: rgb(200, 173, 220);
+            background-color: #afc8e6;
             font-family: 'Poppins', sans-serif;
             box-shadow: 4px 4px 10px rgba(114, 114, 114, 0.9);
             border-radius: 10px;
@@ -205,7 +205,7 @@ $conn->close();
                         <option value="WIE Chapter Admin">WIE Chapter Admin</option>
 
                     </select><br><br>
-                    <input style="height: 30px; background-color: rgb(64, 8, 123); color: white;" type="submit" name="admin-login" value="Login"><br><br>
+                    <input style="height: 30px; background-color:#0f0377 ; color: white;" type="submit" name="admin-login" value="Login"><br><br>
                 </form>
                 <a href="login.php">Back To Login</a>
             </div>

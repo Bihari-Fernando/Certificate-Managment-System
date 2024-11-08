@@ -10,9 +10,15 @@ $query = "SELECT * FROM students WHERE regNo = '$regNo'";
 $res = mysqli_query($con, $query);
 $obj = mysqli_fetch_assoc($res);
 
+
 if (!empty($obj['profile_picture']) && file_exists("uploads/" . $obj['profile_picture'])) {
-  $profilePicture = "uploads/" . htmlspecialchars($obj['profile_picture']);
+  $profilePicture = htmlspecialchars($obj['profile_picture']);
+} else {
+  
+  $profilePicture = "uploads/default.png"; 
 }
+
+
 
  
 // Check for inquiries
@@ -653,16 +659,22 @@ a:focus {
   cursor: pointer;
   outline: none;
 }
+.uni-logo{
+  height: 100px;
+  width: 100px;
+  margin-left: 0.5px;
+}
 
 </style>
 
 </head>
 
-<body id="Dashboard">
+<section><body id="Dashboard">
     <div class="navdiv">
     
         <div class="nav-links">
-            <a href="dashboard.php" class="active">Dashboard</a>
+            <img class='uni-logo' src="uni2.png" alt="logo">
+            <a href="UserDashboard.php" class="active">Dashboard</a>
             <a href="IEEE/IEEEcertificate.php">IEEE Certificates</a>
             <a href="TopGraded/requested_top_student_certificates.php">Top Graded Student Certificates</a>
             <a href="Internship/internship_certificate.php">Internship Certificates</a>
@@ -678,7 +690,7 @@ a:focus {
             <div class="grid-col-3">
                 <div class="profile">
                     <div class="icon-bg profile-bg">
-                    <img src="<?php echo $profilePicture; ?>" alt="Profile Picture" style="max-width: 200px; height: auto;">
+                    <img class="profile-picture" src="../<?php echo $profilePicture;?>" alt="Profile Picture" style="max-width: 200px; height: auto;">
                     </div>
                     <h4><?php echo htmlspecialchars($obj['fullName']); ?></h4>
                     <p><?php echo htmlspecialchars($obj['regNo']); ?></p>
@@ -686,7 +698,7 @@ a:focus {
                 <div class="line"></div>
                 <div class="profile-details">
                     <div class="detail-row-grid"><h5>Current Level:</h5><p><?php echo htmlspecialchars($obj['currentLevel']); ?></p></div>
-                    <div class="detail-row-grid"><h5>Batch No:</h5><p><?php echo htmlspecialchars($obj['batchNo']); ?></p></div>
+                   
                     <div class="detail-row-grid"><h5>Registration No:</h5><p><?php echo htmlspecialchars($obj['regNo']); ?></p></div>
                     <div class="detail-row-grid"><h5>Index No:</h5><p><?php echo htmlspecialchars($obj['indexNo']); ?></p></div>
                     <div class="detail-row-grid"><h5>NIC:</h5><p><?php echo htmlspecialchars($obj['nic']); ?></p></div>
@@ -706,7 +718,7 @@ a:focus {
                 <thead>
                     <tr>
                         <th>Certificate Type</th>
-                        <th>Requested Date</th>
+                        <th style="padding-left: 100px;">Requested Date</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -723,7 +735,7 @@ a:focus {
     ): ?>
         <tr>
             <td><?php echo htmlspecialchars($certificate['type']); ?></td>
-            <td><?php echo htmlspecialchars($certificate['requestedDate']); ?></td>
+            <td style="padding-left: 100px;" ><?php echo htmlspecialchars($certificate['requestedDate']); ?></td>
             <td>
                 <?php if ($certificate['status'] == 'V'): ?>
                     <a href="<?php echo $downloadLinks[$certificate['type']] . '?id=' . urlencode($certificate['id']); ?>" class="btn fill-btn">
@@ -743,11 +755,11 @@ a:focus {
 
         <div class="card request-sec">
     <h3 class="topic">Your Submitted Problems and Responses</h3>
-    <table>
+    <table >
         <thead>
             <tr>
                 <th>Problem Type</th>
-                <th>Problem Description</th>
+                <th style="padding-left: 100px;" >Problem Description</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -756,7 +768,7 @@ a:focus {
     <?php if (!empty($problem['problems']) && $problem['problems'] !== 'N/A'): ?>
         <tr>
             <td><?php echo htmlspecialchars($problem['type']); ?></td>
-            <td><?php echo htmlspecialchars($problem['problems']); ?></td>
+            <td style="padding-left: 100px;"><?php echo htmlspecialchars($problem['problems']); ?></td>
             <td>
                 <?php if ($problem['problem_status'] == 'V'): ?>
                     <a href="<?php echo $responseLinks[$problem['type']] . '?regNo=' . urlencode($regNo) . '&id=' . urlencode($problem['id']); ?>" class="btn fill-btn">View</a>
@@ -778,9 +790,7 @@ a:focus {
         
     </div>
 
-    <div class="footer">
-        <p>COPYRIGHT &copy; 2023 FACULTY OF SCIENCE UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.</p>
-    </div>
+    
 
     <script>
         function req(reg) {
@@ -798,4 +808,10 @@ a:focus {
         }
     </script>
 </body>
+</section>
+<footer class="footer">
+        <p class="text-footer">COPYRIGHT &copy; 2024 DEPARTMENT OF COMPUTER SCIENCE UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.</p>
+</footer>
+
+
 </html>

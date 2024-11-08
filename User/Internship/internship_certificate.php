@@ -208,11 +208,6 @@ body#Dashboard {
     <div class="btn-row-inquiry">
             <a class="btn outline-btn" href="Complaints.php">File any inquiries</a>
 </div>        
-    <div class="footer">
-      <p class="copyright">
-        COPYRIGHT &copy; 2023 FACULTY OF SCIENCE UNIVERSITY OF JAFFNA. ALL
-        RIGHTS RESERVED.
-      </p>
-    </div>
+    
   </body>
 </html>

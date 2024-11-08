@@ -39,8 +39,7 @@ if (isset($_GET['logout'])) {
             height: 100vh;
             margin: 0;
             align-items: center;
-            background-color: rgb(88, 172, 172);
-            background-image: linear-gradient(to bottom, #dacff1, #f3f3f3, #c0c5d8);
+            background-color:#dbe6f3;
         }
         .logout-box {
             width: 45%;

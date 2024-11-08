@@ -55,7 +55,7 @@ if (isset($_POST["complaints"]) && isset($_POST["description"]))
         justify-content: space-between;
         align-items: center;
         padding: 10px 20px;
-        background-color: #004d99;
+        background-color: #0f0377;
         color: #fff;
       }
 
@@ -74,7 +74,7 @@ if (isset($_POST["complaints"]) && isset($_POST["description"]))
       }
 
       .nav-links a.fill-btn {
-        background-color: #007acc;
+        background-color: #0f0377;
       }
 
       .nav-links a.fill-btn:hover {
@@ -144,37 +144,29 @@ if (isset($_POST["complaints"]) && isset($_POST["description"]))
       }
 
       .fill-btn {
-        background-color: #007acc;
+        background-color: #0f0377;
         color: #fff;
         border: none;
         transition: background-color 0.3s ease;
       }
 
       .fill-btn:hover {
-        background-color: #005b99;
+        background-color: #0f0377;
       }
 
       .outline-btn {
         background-color: transparent;
-        color: #007acc;
-        border: 2px solid #007acc;
+        color: #0f0377;
+        border: 2px solid #0f0377;
         transition: background-color 0.3s ease, color 0.3s ease;
       }
 
       .outline-btn:hover {
-        background-color: #007acc;
+        background-color: #0f0377;
         color: #fff;
       }
 
-      .footer {
-        text-align: center;
-        padding: 15px;
-        background-color: #004d99;
-        color: #fff;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-      }
+      
     </style>
   </head>
   <body id="Dashboard">
@@ -193,16 +185,12 @@ if (isset($_POST["complaints"]) && isset($_POST["description"]))
             <textarea id="complaint" class="input" name="description" rows="4" cols="50"></textarea>
           </div>
           <div class="btn-row">
-            <a href="UserDashboard.php" class="btn outline-btn">Back</a>
+            <a href="../UserDashboard.php" class="btn outline-btn">Back</a>
             <input class="btn fill-btn" name="complaints" type="submit" value="Submit" />
           </div>
         </form>
       </div>
     </div>
-    <div class="footer">
-      <p class="copyright">
-        COPYRIGHT &copy; 2023 FACULTY OF SCIENCE UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.
-      </p>
-    </div>
+    
   </body>
 </html>

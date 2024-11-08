@@ -62,7 +62,7 @@ if (!$result) {
         }
 
         .btn {
-            background-color: #233c98;
+            background-color: #0f0377;
             color: white;
             border: none;
             padding: 10px 20px;

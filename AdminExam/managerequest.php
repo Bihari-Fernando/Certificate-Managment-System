@@ -18,9 +18,10 @@
 
 </head>
 
+<section>
 <body>
     <header class="heading">
-        <h1>UNIVERSITY CERTIFICATE ISSUING SYSTEM - ADMINISTRATOR</h1>
+        <h1>UNIVERSITY CERTIFICATE ISSUING SYSTEM</h1>
     </header>
     <div class="maincontent">
         <div class="verticalnavi">
@@ -135,4 +136,9 @@ $result = $con->query($sql);
 
 </body>
 
+</section>
+
+<footer class="footer">
+        <p class="text-footer">COPYRIGHT &copy; 2024 DEPARTMENT OF COMPUTER SCIENCE UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.</p>
+    </footer>
 </html>

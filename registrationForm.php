@@ -18,20 +18,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $indexNo = $_POST['indexNo'];
     $studyProgram = $_POST['studyProgram'];
 
-
-    
     if (!empty($fullName) && !empty($regNo) && !empty($nic) && !empty($email) && 
     !empty($contactNo) && !empty($address) && !empty($password) && !empty($rePassword) && 
     !empty($currentLevel) && !empty($gender) && !empty($admissionDate) && 
     !empty($indexNo) && !empty($studyProgram)) {
-        // Password validation
+        
         if ($password !== $rePassword) {
-            // Display an alert using JavaScript
             echo "<script>
                     alert('Your Passwords do not match.');
                     window.location.href = 'registrationForm.php';
                   </script>";
-            exit(); // Ensure no further code runs after the script
+            exit();
         }
 
         $checkRegNoQuery = "SELECT * FROM students WHERE regNo = '$regNo'";
@@ -45,59 +42,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
 
+        $profile_picture = $_FILES['profile_picture'];
+        $targetDir = "uploads/";
+        $uploadOk = 1;
+        $targetFile = null;
 
-$profile_picture = $_FILES['profile_picture'];
-$targetDir = "uploads/";
-$filename = preg_replace("/\s+/", "_", basename($profile_picture["name"])); // Sanitize file name
-$targetFile = $targetDir . $filename;
-$uploadOk = 1;
+        if (!empty($profile_picture['tmp_name'])) {
+            $filename = preg_replace("/\s+/", "_", basename($profile_picture["name"])); 
+            $targetFile = $targetDir . $filename;
 
-// Check if file is an image
-$check = getimagesize($profile_picture["tmp_name"]);
-if ($check === false) {
-    die("File is not an image.");
-}
+            // Check if file is an image
+            $check = getimagesize($profile_picture["tmp_name"]);
+            if ($check === false) {
+                echo "<script>
+                        alert('File is not a valid image.');
+                        window.location.href = 'registrationForm.php';
+                      </script>";
+                exit();
+            }
 
-// Save the uploaded file
-if (!file_exists($targetDir)) {
-    mkdir($targetDir, 0777, true); // Create directory if it doesn't exist
-}
+            // Create directory if it doesn't exist
+            if (!file_exists($targetDir)) {
+                mkdir($targetDir, 0777, true);
+            }
 
-if (move_uploaded_file($profile_picture["tmp_name"], $targetFile)) {
+            // Move the uploaded file
+            if (!move_uploaded_file($profile_picture["tmp_name"], $targetFile)) {
+                echo "<script>
+                        alert('Sorry, there was an error uploading your file.');
+                        window.location.href = 'registrationForm.php';
+                      </script>";
+                exit();
+            }
+        } else {
+            // Set a default image if no file is uploaded
+            $targetFile = "uploads/default.png"; // Ensure default.png exists
+        }
     
-} else {
-    if ($password !== $rePassword) {
-        // Display an alert using JavaScript
-        echo "<script>
-                alert('Sorry, there was an error uploading your file.');
-                window.location.href = 'registrationForm.php';
-              </script>";
-        exit(); // Ensure no further code runs after the script
+        $query = "INSERT INTO students (fullName, regNo, nic, email, contactNo, address, password, currentLevel, gender, admissionDate, indexNo, profile_picture, studyProgram) 
+                  VALUES ('$fullName', '$regNo', '$nic', '$email', '$contactNo', '$address', '$password', '$currentLevel', '$gender', '$admissionDate', '$indexNo', '$targetFile', '$studyProgram')";
+        
+        $result = mysqli_query($conn, $query);
+        if ($result) {
+            header("Location: login.php");
+            exit();
+        } else {
+            echo "<script>alert('Registration failed. Please try again.');</script>";
+        }
     }
-   
 }
-
-
-    
-    $query = "INSERT INTO students (fullName, regNo, nic, email, contactNo, address, password, currentLevel, gender, admissionDate, indexNo, profile_picture, studyProgram) 
-              VALUES ('$fullName', '$regNo', '$nic', '$email', '$contactNo', '$address', '$password', '$currentLevel', '$gender', '$admissionDate', '$indexNo', '$targetFile', '$studyProgram')";
-    $result = mysqli_query($conn, $query);
-    if ($result) {
-
-        header("Location: login.php");
-        exit(); 
-    } else {
-        echo "<script>alert('This is an alert message!');</script>";
-    
-    }
-    
-
-   
-}
-
-    }
-    
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

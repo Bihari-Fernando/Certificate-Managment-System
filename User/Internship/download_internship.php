@@ -210,9 +210,7 @@ if (mysqli_num_rows($result) > 0) {
     <button id="download-button" class="btn">Download as PDF</button>
   </div>
   
-  <div class="footer">
-    COPYRIGHT &copy; 2023 FACULTY OF SCIENCE, UNIVERSITY OF JAFFNA. ALL RIGHTS RESERVED.
-  </div>
+  
 
   <script>
     const button = document.getElementById('download-button');

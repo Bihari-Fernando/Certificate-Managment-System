@@ -22,7 +22,7 @@
 
 <body>
     <header class="heading">
-        <h1>UNIVERSITY CERTIFICATE ISSUING SYSTEM - ADMIN</h1>
+        <h1>UNIVERSITY CERTIFICATE ISSUING SYSTEM</h1>
     </header>
     <div class="maincontent">
         <div class="verticalnavi">

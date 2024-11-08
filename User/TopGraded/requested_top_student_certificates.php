@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UCIS | Certificate Request</title>
+    <title>Certificate Request</title>
     <link rel="stylesheet" href="" />
   </head>
   <style>
@@ -211,11 +211,6 @@ body#Dashboard {
     </div>
     <div class="btn-row-inquiry">
             <a class="btn outline-btn" href="Complaints.php">File any inquiries</a>
-    <div class="footer">
-      <p class="copyright">
-        COPYRIGHT &copy; 2023 FACULTY OF SCIENCE UNIVERSITY OF JAFFNA. ALL
-        RIGHTS RESERVED.
-      </p>
-    </div>
+    
   </body>
 </html>

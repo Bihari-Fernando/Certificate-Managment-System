@@ -77,17 +77,12 @@ if (isset($_POST["complaints"]))
             </div>
           </div>
           <div class="btn-row">
-            <a href="UserDashboard.php" class="btn outline-btn">Back</a>
+            <a href="../UserDashboard.php" class="btn outline-btn">Back</a>
             <input class="btn fill-btn"  name="complaints" type="submit" value="Submit" />
           </div>
         </form>
       </div>
     </div>
-    <div class="footer">
-      <p class="copyright">
-        COPYRIGHT &copy; 2023 FACULTY OF SCIENCE UNIVERSITY OF JAFFNA. ALL
-        RIGHTS RESERVED.
-      </p>
-    </div>
+   
   </body>
 </html>

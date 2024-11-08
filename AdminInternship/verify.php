@@ -55,7 +55,7 @@ $result = mysqli_query($con, $query);
         }
 
         .btn {
-            background-color: #04AA6D;
+            background-color: #0f0377;
             color: white;
             border: none;
             padding: 10px 20px;

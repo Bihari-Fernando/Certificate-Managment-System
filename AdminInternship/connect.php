@@ -2,8 +2,8 @@
 
 $hostname="10.10.10.157";
 $username="csc210user";
-$password="CSC210!";
-$dbname="certificate";
+$password="CSC!2qwasZX";
+$dbname="group3";
 
 $con=mysqli_connect($hostname,$username,$password,$dbname);
 if(!$con){

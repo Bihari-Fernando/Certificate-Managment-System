@@ -160,3 +160,16 @@ button{
     background-color: #912121;
     margin-top: 50px;
 }
+.footer {
+    text-align: center;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    border-top: 2px solid black;
+    background-color: #0f0377;
+  }
+  .text-footer{
+    color: white;
+  }

@@ -16,6 +16,7 @@
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
+            background-color: #abcbf1;
         }
 
         .container {
@@ -29,7 +30,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: rgba(241, 245, 252, 0.9); /* Adding transparency */
+            background-color: rgba(241, 245, 252, 0.5); /* Adding transparency */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 250px;
@@ -70,13 +71,13 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            background-color: #4CAF50;
+            background-color: #0c51a2;
             color: white;
             transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #8fc0fa;
         }
     </style>
 </head>
