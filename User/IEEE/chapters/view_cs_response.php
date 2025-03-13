@@ -109,9 +109,7 @@ if (mysqli_num_rows($result) > 0) {
             <p><strong>Response:</strong> <?php echo $response ? $response : "No response found for this problem."; ?></p>
         </div>
     </div>
-    <div class="footer">
-        &copy; <?php echo date("Y"); ?> Your Application Name
-    </div>
+   
 </body>
 </html>
 <?php

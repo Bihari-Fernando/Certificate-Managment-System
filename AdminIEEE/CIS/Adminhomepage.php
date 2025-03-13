@@ -80,7 +80,6 @@
                 <li class="active"><a href="Adminhomepage.php">Home</a></li>
                 <li><a href="verify.php">Verify</a></li>
                 <li><a href="problems.php">View Problems</a></li>
-                <li><a href="viewcomplains.php">View Complains</a></li>
                 <li><a href="logout.php">Log Out</a></li>
             </ul>
         </div><!-- verticalnavi -->

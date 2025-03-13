@@ -97,7 +97,7 @@
                            
                             
                             <table>
-                            <tr><th>Reg No</th><th>Full Name</th><th>NIC</th><th>Action</th></tr>
+                            <tr><th>Reg No</th><th>Full Name</th><th></th><th>Action</th></tr>
                             <?php while ($row = $result->fetch_assoc()) { ?>
                                 <tr>
                                 <td> <?php echo $row['regNo']  ?> </td>

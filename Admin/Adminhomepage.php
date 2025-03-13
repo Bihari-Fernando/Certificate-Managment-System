@@ -56,7 +56,6 @@
                         // Display user details
                         echo "Name: " . $row["username"] . "<br>";
                         echo "Type: " . $row["type"] . "<br>";
-                        echo "Department: " . $row["department"] . "<br>";
                         echo "Employee ID: " . $row["employeeID"] . "<br>";
                     } else {
                         echo "User not found.";
